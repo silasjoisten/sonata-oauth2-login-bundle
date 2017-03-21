@@ -23,7 +23,7 @@
   "target-dir" : "Exozet/Oauth2Bundle",
   "repositories" : [{
     "type" : "vcs",
-    "url" : "https://github.com/"
+    "url" : "https://github.com/silasjoisten/oauth2"
   }],
   "extra" : {
     "branch-alias" : {
