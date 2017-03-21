@@ -1,0 +1,33 @@
+{
+  "name" : "exozet/oauth2-login-bundle",
+  "description" : "A OAuth2LoginBundle to sign in Exozet members",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "silas.joisten",
+    "email" : "silas.joisten@exozet.com"
+  }],
+  "keywords" : [
+    "oauth2 login exozet bundle"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "hwi/oauth-bundle": "^0.5.2"
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Exozet\\Oauth2Bundle" : ""
+    }
+  },
+  "target-dir" : "Exozet/Oauth2Bundle",
+  "repositories" : [{
+    "type" : "vcs",
+    "url" : "https://github.com/"
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "1.0-dev"
+    }
+  }
+}
