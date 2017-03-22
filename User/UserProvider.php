@@ -38,12 +38,15 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
+        if(strpos($response->getEmail(), '@exozet.com') === false) {
+            throw new \Exception('Email must match with @exozet.com');
+        }
+
         $user = $this->loadUserByUsername($response->getEmail());
 
         if(!$user) {
-            $username = strtolower($response->getFirstName() . '.' . $response->getLastName());
             $user = $this->userManager->create();
-            $user->setUsername($username);
+            $user->setUsername($response->getEmail());
             $user->setEmail($response->getEmail());
             $user->setFirstname($response->getFirstName());
             $user->setLastname($response->getLastName());
