@@ -5,7 +5,7 @@
     "require": {
         "hwi/oauth-bundle": "^0.5",
         "google/apiclient": "^2.1",
-        "twig/twig": "^2.2"
+        "twig/twig": "^2"
     },
     "autoload" : {
         "psr-4" : {
