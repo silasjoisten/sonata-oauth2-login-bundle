@@ -36,7 +36,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
         return new User(
             $response->getEmail(),
             $response->getTokenSecret(),
-            ['ROLE_USER'],
+            ['ROLE_SONATA_ADMIN'],
             true,
             $response->getProfilePicture(),
             $response->getRealName()
