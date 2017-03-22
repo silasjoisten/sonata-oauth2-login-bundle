@@ -8,6 +8,11 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 class User implements AdvancedUserInterface
 {
     /**
+     * @var int
+     */
+    protected $id;
+
+    /**
      * @var string
      */
     private $username;
@@ -89,6 +94,16 @@ class User implements AdvancedUserInterface
         $this->accountNonLocked = $userNonLocked;
         $this->roles = $roles;
         $this->fullName = $fullName;
+    }
+
+    /**
+     * Get id.
+     *
+     * @return int $id
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
