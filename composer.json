@@ -3,7 +3,8 @@
     "description": "A OAuth2LoginBundle to sign in Exozet members",
     "type": "symfony-bundle",
     "require": {
-        "hwi/oauth-bundle": "^0.5"
+        "hwi/oauth-bundle": "^0.5",
+        "google/apiclient": "^2.1"
     },
     "autoload" : {
         "psr-4" : {
