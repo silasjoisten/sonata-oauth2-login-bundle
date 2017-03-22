@@ -7,10 +7,11 @@ class RenderButtonExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'render_exozet_login_button' => new \Twig_SimpleFunction(
-                $this,
-                'renderExozetLoginButton',
-                array('needs_environment' => true)
+            new \Twig_SimpleFunction('render_exozet_login_button', [$this, 'renderExozetLoginButton'],
+                [
+                    'is_safe' => ['html'],
+                    'needs_environment' => true
+                ]
             ),
         );
     }
