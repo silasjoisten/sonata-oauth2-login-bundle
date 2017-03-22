@@ -6,7 +6,7 @@
         "hwi/oauth-bundle": "^0.5"
     },
     "autoload" : {
-        "psr-0" : {
+        "psr-4" : {
             "Exozet\\Oauth2LoginBundle" : ""
         }
     },
