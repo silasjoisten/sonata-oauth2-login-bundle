@@ -8,7 +8,7 @@
         <service id="exozet.oauth2.user.provider" class="Exozet\Oauth2LoginBundle\User\UserProvider">
         </service>
 
-        <service id="exozet.google.client" class="\Google_Client">
+        <service id="exozet.google.client" class="Google_Client">
         </service>
 
         <service id="exozet.google.authorization" class="Exozet\Oauth2LoginBundle\Authorization\Google">
