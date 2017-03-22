@@ -18,7 +18,6 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     private $userManager;
 
     /**
-     *
      * @param UserManagerInterface $userManager
      */
     public function __construct(UserManagerInterface $userManager)
