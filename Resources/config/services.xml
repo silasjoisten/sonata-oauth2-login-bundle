@@ -12,11 +12,6 @@
         <service id="exozet.google.client" class="Google_Client">
         </service>
 
-        <service id="exozet.google.authorization" class="Exozet\Oauth2LoginBundle\Authorization\Google">
-            <argument type="service" id="security.token_storage" />
-            <argument type="service" id="exozet.google.client" />
-        </service>
-
         <service id="exozet.oauth.twig.render_button_extension"
                  class="Exozet\Oauth2LoginBundle\Twig\RenderButtonExtension"
                  public="false">
