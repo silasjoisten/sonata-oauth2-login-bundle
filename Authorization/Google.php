@@ -23,8 +23,8 @@ class Google
     public function __construct(TokenStorageInterface $tokenStorage, \Google_Client $client)
     {
         $this->tokenStorage = $tokenStorage;
-        $token = $this->tokenStorage->getToken()->getRawToken();
 
+        $token = $this->tokenStorage->getToken()->getRawToken();
         $this->client = $client;
         $this->client->setAccessToken($token);
         $this->client->setAccessType('offline');

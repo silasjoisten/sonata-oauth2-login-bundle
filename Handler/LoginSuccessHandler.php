@@ -10,7 +10,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 
-class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
+class LoginSuccessHandler
 {
     /**
      * @var TokenStorage
@@ -28,24 +28,15 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
     private $authorization;
 
     /**
-     * @param TokenStorage $tokenStorage
-     * @param RouterInterface $router
+     * @param Google $authorization
      */
-    public function __construct(TokenStorage $tokenStorage, RouterInterface $router, Google $authorization)
+    public function __construct(Google $authorization)
     {
-        $this->tokenStorage = $tokenStorage;
-        $this->router = $router;
         $this->authorization = $authorization;
     }
 
-    public function onLogoutSuccess(Request $request)
+    public function onLoginSuccess(Request $request)
     {
-        $client = $this->authorization->getClient();
-        $client->revokeToken();
-
-        $this->tokenStorage->setToken(null);
-        $request->getSession()->invalidate();
-
-        return new RedirectResponse($this->router->generate('exozet_oauth2_login_homepage'));
+        $this->authorization->getClient();
     }
 }

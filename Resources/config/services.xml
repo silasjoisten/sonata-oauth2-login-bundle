@@ -20,7 +20,11 @@
         <service id="exozet.logout_success_handler" class="Exozet\Oauth2LoginBundle\Handler\LogoutSuccessHandler">
             <argument type="service" id="security.token_storage" />
             <argument type="service" id="router" />
-            <argument type="service" id="exozet.google.client" />
+            <argument type="service" id="exozet.google.authorization" />
+        </service>
+
+        <service id="exozet.login_success_handler" class="Exozet\Oauth2LoginBundle\Handler\LoginSuccessHandler">
+            <argument type="service" id="exozet.google.authorization" />
         </service>
 
         <service id="exozet.oauth.twig.render_button_extension"
