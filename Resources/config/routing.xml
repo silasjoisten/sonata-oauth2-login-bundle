@@ -4,12 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="@HWIOAuthBundle/Resources/config/routing/redirect.xml" />
-    <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" />
-    <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" />
+    <import resource="@HWIOAuthBundle/Resources/config/routing/redirect.xml" prefix="/connect" />
+    <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" prefix="/connect" />
+    <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" prefix="/login" />
+
+    <route id="google_login" path="/login/check-google">
+    </route>
 
     <route id="exozet_oauth2_login_homepage" path="/">
         <default key="_controller">ExozetOauth2LoginBundle:Default:index</default>
+    </route>
+
+    <route id="exozet_oauth_logout" path="/">
+        <default key="_controller">ExozetOauth2LoginBundle:Security:logout</default>
     </route>
 
     <route id="exozet_oauth_logout" path="/">
