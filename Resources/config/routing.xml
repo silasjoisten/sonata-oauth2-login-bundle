@@ -4,22 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="@HWIOAuthBundle/Resources/config/routing/redirect.xml" prefix="/admin/oauth/connect" />
-    <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" prefix="/admin/oauth/connect" />
-    <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" prefix="/admin/oauth/login" />
+    <import resource="@HWIOAuthBundle/Resources/config/routing/redirect.xml" prefix="/admin/connect" />
+    <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" prefix="/admin/connect" />
+    <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" prefix="/admin/login" />
 
-    <route id="google_login" path="/admin/login/oauth/check-google">
+    <route id="exozet_google_login_check" path="/admin/login/check-google">
     </route>
 
     <route id="exozet_oauth2_login_homepage" path="/">
         <default key="_controller">ExozetOauth2LoginBundle:Default:index</default>
     </route>
 
-    <route id="exozet_oauth_logout" path="/">
-        <default key="_controller">ExozetOauth2LoginBundle:Security:logout</default>
-    </route>
-
-    <route id="exozet_oauth_logout" path="/">
+    <route id="exozet_oauth_logout" path="/admin/logout">
         <default key="_controller">ExozetOauth2LoginBundle:Security:logout</default>
     </route>
 </routes>
