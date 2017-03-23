@@ -2,8 +2,24 @@
 
 ### Installation
 
+In your composer.json add:
+```json
+    {
+      //...
+      "require": {
+            //...
+            "silasjoisten/oauth2login-bundle": "dev-master"
+       },
+       "repositories" : [{
+           "type" : "vcs",
+           "url" : "https://github.com/silasjoisten/oauth2"
+       }]
+    }
+```
+
+After that execute:
 ```console
-    composer require silasjoisten/oauth2login-bundle
+    composer update silasjoisten/oauth2login-bundle
 ```
 
 Register Bundle in **app/AppKernel.php**:
