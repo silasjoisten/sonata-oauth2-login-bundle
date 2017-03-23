@@ -26,5 +26,6 @@ class ExozetOauth2LoginExtension extends Extension
         $loader->load('services.xml');
 
         $container->setParameter('exozet.valid_email_domains', $config['valid_email_domains']);
+        $container->setParameter('exozet.default_user_roles', $config['default_user_roles']);
     }
 }

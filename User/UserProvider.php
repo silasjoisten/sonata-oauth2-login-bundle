@@ -30,15 +30,26 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     private $emailChecker;
 
     /**
+     * @var array
+     */
+    private $defaultUserRoles;
+
+    /**
      * @param UserManagerInterface $userManager
      * @param Email $emailChecker
      * @param Authorization $authorization
+     * @param array $defaultUserRoles
      */
-    public function __construct(UserManagerInterface $userManager, Email $emailChecker, Authorization $authorization)
-    {
+    public function __construct(
+        UserManagerInterface $userManager,
+        Email $emailChecker,
+        Authorization $authorization,
+        array $defaultUserRoles
+    ) {
         $this->userManager = $userManager;
         $this->emailChecker = $emailChecker;
         $this->authorization = $authorization;
+        $this->defaultUserRoles = $defaultUserRoles;
     }
 
     /**
@@ -73,7 +84,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
             $user->setLastname($response->getLastName());
             $user->setPassword('');
             $user->setEnabled(true);
-            $user->setRoles(['ROLE_SONATA_ADMIN']);
+            $user->setRoles($this->defaultUserRoles);
 
             $this->userManager->save($user);
         }

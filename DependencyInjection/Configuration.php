@@ -22,6 +22,11 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('valid_email_domains')
+                    ->info('Used for user creation after success validation')
+                    ->example('ROLE_SONATA_ADMIN')
+                    ->prototype('scalar')->end()
+                ->end()
+                ->arrayNode('valid_email_domains')
                     ->info('Needed for email domain validation')
                     ->example('@exozet.com')
                     ->prototype('scalar')->end()

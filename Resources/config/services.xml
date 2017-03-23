@@ -13,6 +13,7 @@
             <argument type="service" id="sonata.user.orm.user_manager" />
             <argument type="service" id="exozet.checker.email" />
             <argument type="service" id="exozet.google.authorization" />
+            <argument>%exozet.default_user_roles%</argument>
         </service>
 
         <service id="exozet.google.client" class="Google_Client">
