@@ -5,8 +5,13 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="exozet.checker.email" class="Exozet\Oauth2LoginBundle\Checker\Email">
+            <argument type="collection" id="exozet.valid_email_domains" />
+        </service>
+
         <service id="exozet.oauth2.user.provider" class="Exozet\Oauth2LoginBundle\User\UserProvider">
             <argument type="service" id="sonata.user.orm.user_manager" />
+            <argument type="service" id="exozet.checker.email" />
             <argument type="service" id="exozet.google.authorization" />
         </service>
 

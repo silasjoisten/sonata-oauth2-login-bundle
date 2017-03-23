@@ -2,6 +2,7 @@
 
 namespace Exozet\Oauth2LoginBundle\User;
 
+use Exozet\Oauth2LoginBundle\Checker\Email;
 use Exozet\Oauth2LoginBundle\Google\Authorization;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
@@ -24,11 +25,19 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     private $authorization;
 
     /**
-     * @param UserManagerInterface $userManager
+     * @var Email
      */
-    public function __construct(UserManagerInterface $userManager, Authorization $authorization)
+    private $emailChecker;
+
+    /**
+     * @param UserManagerInterface $userManager
+     * @param Email $emailChecker
+     * @param Authorization $authorization
+     */
+    public function __construct(UserManagerInterface $userManager, Email $emailChecker, Authorization $authorization)
     {
         $this->userManager = $userManager;
+        $this->emailChecker = $emailChecker;
         $this->authorization = $authorization;
     }
 
@@ -47,7 +56,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     {
         $token = $response->getOAuthToken()->getRawToken();
 
-        if(strpos($response->getEmail(), '@exozet.com') === false) {
+        if(!$this->emailChecker->isEmailValid($response->getEmail())) {
             $client = $this->authorization->getClient();
             $client->revokeToken($token);
 
