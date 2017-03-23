@@ -1,4 +1,5 @@
 <?php
+
 namespace Exozet\Oauth2LoginBundle\Google;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -6,31 +7,22 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class Authorization
 {
     /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
      * @var \Google_Client
      */
     private $client;
 
     /**
-     * @param TokenStorageInterface $tokenStorage
      * @param \Google_Client $client
      */
-    public function __construct(TokenStorageInterface $tokenStorage, \Google_Client $client)
+    public function __construct(\Google_Client $client)
     {
-        $this->tokenStorage = $tokenStorage;
-        $token = $this->tokenStorage->getToken()->getRawToken();
-
         $this->client = $client;
-        $this->client->setAccessToken($token);
-        $this->client->setAccessType('offline');
     }
 
     public function getClient()
     {
+        $this->client->setAccessType('offline');
+
         return $this->client;
     }
 }

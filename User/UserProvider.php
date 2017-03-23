@@ -45,9 +45,13 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
+        $token = $response->getOAuthToken()->getRawToken();
+
         if(strpos($response->getEmail(), '@exozet.com') === false) {
             $client = $this->authorization->getClient();
-            $client->revokeToken();
+            $client->revokeToken($token);
+
+            return null;
         }
 
         $user = $this->loadUserByUsername($response->getEmail());
