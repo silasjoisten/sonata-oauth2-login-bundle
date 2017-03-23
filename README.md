@@ -30,6 +30,7 @@ Configure the Bundle:
 ```yml
 exozet_oauth2_login:
     valid_email_domains: ["@exozet.com"]
+    default_user_roles: ["ROLE_SONATA_ADMIN"]
 ```
 
 You can add as much valid domains as you want
