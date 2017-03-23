@@ -22,8 +22,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('valid_email_domains')
-                    ->addDefaultsIfNotSet()
-                    ->defaultValue('@exozet.com')
+                    ->prototype('scalar')->end()
                 ->end()
             ->end()
         ;
