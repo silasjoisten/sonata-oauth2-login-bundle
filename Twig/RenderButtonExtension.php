@@ -14,8 +14,14 @@ class RenderButtonExtension extends \Twig_Extension
         );
     }
 
-    public function renderExozetLoginButton(\Twig_Environment $environment)
+    public function renderExozetLoginButton(\Twig_Environment $environment, array $options = array())
     {
-        return $environment->render('@ExozetOauth2Login/Default/exozet_login.html.twig');
+        $defaults = array(
+            'class' => 'btn btn-danger btn-block btn-flat',
+            'value' => 'Exozet Login'
+        );
+        $options = array_merge($defaults, $options);
+
+        return $environment->render('@ExozetOauth2Login/Default/exozet_login.html.twig', array('options' => $options));
     }
 }
