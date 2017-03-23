@@ -26,6 +26,14 @@ exozet_oauth:
     resource: "@ExozetOauth2LoginBundle/Resources/config/routing.xml"
 ```
 
+Configure the Bundle:
+```yml
+exozet_oauth2_login:
+    valid_email_domains: ["@exozet.com"]
+```
+
+You can add as much valid domains as you want
+
 Configure the HWIOauthBundle:
 
 in security.yml:
