@@ -10,8 +10,4 @@
 
     <route id="exozet_google_login_check" path="/login/check-google">
     </route>
-
-    <route id="exozet_oauth2_login_homepage" path="/">
-        <default key="_controller">ExozetOauth2LoginBundle:Default:index</default>
-    </route>
 </routes>
