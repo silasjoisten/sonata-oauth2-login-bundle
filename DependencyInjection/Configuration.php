@@ -22,6 +22,8 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('valid_email_domains')
+                    ->info('Needed for email domain validation')
+                    ->example('@exozet.com')
                     ->prototype('scalar')->end()
                 ->end()
             ->end()

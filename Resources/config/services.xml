@@ -6,7 +6,7 @@
 
     <services>
         <service id="exozet.checker.email" class="Exozet\Oauth2LoginBundle\Checker\Email">
-            <argument type="collection" id="exozet.valid_email_domains" />
+            <argument>%exozet.valid_email_domains%</argument>
         </service>
 
         <service id="exozet.oauth2.user.provider" class="Exozet\Oauth2LoginBundle\User\UserProvider">
