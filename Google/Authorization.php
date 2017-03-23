@@ -2,8 +2,6 @@
 
 namespace Exozet\Oauth2LoginBundle\Google;
 
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-
 class Authorization
 {
     /**

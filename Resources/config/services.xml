@@ -20,7 +20,6 @@
         </service>
 
         <service id="exozet.google.authorization" class="Exozet\Oauth2LoginBundle\Google\Authorization">
-            <argument type="service" id="security.token_storage" />
             <argument type="service" id="exozet.google.client" />
         </service>
     </services>
