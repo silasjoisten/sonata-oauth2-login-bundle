@@ -7,6 +7,7 @@
     <services>
         <service id="exozet.oauth2.user.provider" class="Exozet\Oauth2LoginBundle\User\UserProvider">
             <argument type="service" id="sonata.user.orm.user_manager" />
+            <argument type="service" id="exozet.google.authorization" />
         </service>
 
         <service id="exozet.google.client" class="Google_Client">
@@ -16,6 +17,11 @@
                  class="Exozet\Oauth2LoginBundle\Twig\RenderButtonExtension"
                  public="false">
             <tag name="twig.extension" />
+        </service>
+
+        <service id="exozet.google.authorization" class="Exozet\Oauth2LoginBundle\Google\Authorization">
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="exozet.google.client" />
         </service>
     </services>
 </container>

@@ -2,6 +2,7 @@
 
 namespace Exozet\Oauth2LoginBundle\User;
 
+use Exozet\Oauth2LoginBundle\Google\Authorization;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Sonata\UserBundle\Entity\UserManager;
@@ -18,11 +19,17 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     private $userManager;
 
     /**
+     * @var Authorization
+     */
+    private $authorization;
+
+    /**
      * @param UserManagerInterface $userManager
      */
-    public function __construct(UserManagerInterface $userManager)
+    public function __construct(UserManagerInterface $userManager, Authorization $authorization)
     {
         $this->userManager = $userManager;
+        $this->authorization = $authorization;
     }
 
     /**
@@ -39,7 +46,8 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
         if(strpos($response->getEmail(), '@exozet.com') === false) {
-            throw new \Exception('Email must match with @exozet.com');
+            $client = $this->authorization->getClient();
+            $client->revokeToken();
         }
 
         $user = $this->loadUserByUsername($response->getEmail());
