@@ -21,7 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('exozet_oauth2_login');
         $rootNode
             ->children()
-                ->arrayNode('valid_email_domains')
+                ->arrayNode('default_user_roles')
                     ->info('Used for user creation after success validation')
                     ->example('ROLE_SONATA_ADMIN')
                     ->prototype('scalar')->end()
