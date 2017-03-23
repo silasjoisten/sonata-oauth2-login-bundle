@@ -19,7 +19,7 @@ In your composer.json add:
 
 After that execute:
 ```console
-    composer update silasjoisten/oauth2login-bundle
+    composer update exozet/oauth2login-bundle
 ```
 
 Register Bundle in **app/AppKernel.php**:
