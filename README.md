@@ -12,7 +12,7 @@ In your composer.json add:
        },
        "repositories" : [{
            "type" : "vcs",
-           "url" : "https://git.exozet.com/exozet/oauth2login-bundle.git"
+           "url" : "git@git.exozet.com:exozet/oauth2login-bundle.git"
        }]
     }
 ```
