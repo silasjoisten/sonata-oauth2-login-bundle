@@ -8,6 +8,7 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Sonata\UserBundle\Entity\UserManager;
 use Sonata\UserBundle\Model\UserManagerInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -71,7 +72,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
             $client = $this->authorization->getClient();
             $client->revokeToken($token);
 
-            return null;
+            throw new AuthenticationException('Invalid Exozet Google Account');
         }
 
         $user = $this->loadUserByUsername($response->getEmail());
@@ -97,8 +98,8 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
      */
     public function refreshUser(UserInterface $user)
     {
-        if (!$user instanceof User) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
+        if (!$this->supportsClass(get_class($user))) {
+            throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
         }
 
         return $this->loadUserByUsername($user->getUsername());
@@ -109,6 +110,8 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
      */
     public function supportsClass($class)
     {
-        return $class === User::class;
+        $userClass = $this->userManager->getClass();
+
+        return $userClass === $class || is_subclass_of($class, $userClass);
     }
 }
