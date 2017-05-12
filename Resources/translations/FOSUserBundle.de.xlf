@@ -3,7 +3,7 @@
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="oauth2-login-invalid">
-                <source>Invalid Exozet Google Account</source>
+                <source>Invalid Google Account</source>
                 <target>Invalides Exozet-Google Konto!</target>
             </trans-unit>
             <trans-unit id="oauth2-login-failed">

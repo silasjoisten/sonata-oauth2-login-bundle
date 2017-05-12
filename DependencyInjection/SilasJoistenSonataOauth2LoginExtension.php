@@ -1,6 +1,6 @@
 <?php
 
-namespace Exozet\Oauth2LoginBundle\DependencyInjection;
+namespace SilasJoisten\SonataOauth2LoginBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class ExozetOauth2LoginExtension extends Extension
+class SilasJoistenSonataOauth2LoginExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -25,7 +25,7 @@ class ExozetOauth2LoginExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('exozet.valid_email_domains', $config['valid_email_domains']);
-        $container->setParameter('exozet.default_user_roles', $config['default_user_roles']);
+        $container->setParameter('silasjoisten.valid_email_domains', $config['valid_email_domains']);
+        $container->setParameter('silasjoisten.default_user_roles', $config['default_user_roles']);
     }
 }

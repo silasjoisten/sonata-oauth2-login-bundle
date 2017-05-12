@@ -1,9 +1,9 @@
 <?php
 
-namespace Exozet\Oauth2LoginBundle\User;
+namespace SilasJoisten\SonataOauth2LoginBundle\User;
 
-use Exozet\Oauth2LoginBundle\Checker\Email;
-use Exozet\Oauth2LoginBundle\Google\Authorization;
+use SilasJoisten\SonataOauth2LoginBundle\Checker\Email;
+use SilasJoisten\SonataOauth2LoginBundle\Google\Authorization;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Sonata\UserBundle\Entity\UserManager;
@@ -64,7 +64,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     {
         $token = $response->getOAuthToken()->getRawToken();
 
-        if(!$this->emailChecker->isEmailValid($response->getEmail())) {
+        if (!$this->emailChecker->isEmailValid($response->getEmail())) {
             $client = $this->authorization->getClient();
             $client->revokeToken($token);
 
@@ -73,7 +73,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
 
         $user = $this->loadUserByUsername($response->getEmail());
 
-        if(!$user) {
+        if (!$user) {
             $user = $this->userManager->create();
             $user->setUsername($response->getEmail());
             $user->setEmail($response->getEmail());
