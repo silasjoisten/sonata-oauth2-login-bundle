@@ -8,16 +8,12 @@ class AuthorizationTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetClient()
     {
-        $mockedClient = $this->getMockBuilder(\Google_Client::class)
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-
-        $mockedClient->expects($this->once())
+        $client = $this->createMock(\Google_Client::class);
+        $client->expects($this->once())
             ->method('setAccessType')
         ;
 
-        $authorization = new Authorization($mockedClient);
+        $authorization = new Authorization($client);
         $googleClient = $authorization->getClient();
 
         $this->assertInstanceOf(\Google_Client::class, $googleClient);
