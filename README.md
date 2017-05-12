@@ -14,7 +14,7 @@ Register the Bundle in **app/AppKernel.php**:
      {
         // ..
         new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-        new SilasJoisten\Sonata\SonataOauth2LoginBundle\SonataOauth2LoginBundle(),
+        new SilasJoisten\Sonata\Oauth2LoginBundle\SonataOauth2LoginBundle(),
         // ..
      }
 
@@ -27,7 +27,7 @@ Register the Bundle in **app/AppKernel.php**:
 ### Include the Routing:
 ```yml
 SonataOauth2LoginBundle:
-    resource: "@Oauth2LoginBundle/Resources/config/routing.xml"
+    resource: "@SonataOauth2LoginBundle/Resources/config/routing.xml"
 ```
 
 ### Configure the Bundle:
