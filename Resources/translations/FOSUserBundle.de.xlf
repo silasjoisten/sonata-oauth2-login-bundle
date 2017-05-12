@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="oauth2-login-invalid">
                 <source>Invalid Google Account</source>
-                <target>Invalides Exozet-Google Konto!</target>
+                <target>Invalides Google Konto!</target>
             </trans-unit>
             <trans-unit id="oauth2-login-failed">
                 <source>No oauth code in the request.</source>

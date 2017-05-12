@@ -1,6 +1,6 @@
 <?php
 
-namespace SilasJoisten\SonataOauth2LoginBundle\Twig;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\Twig;
 
 class RenderButtonExtension extends \Twig_Extension
 {

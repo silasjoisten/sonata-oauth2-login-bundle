@@ -1,9 +1,9 @@
 <?php
 
-namespace SilasJoisten\SonataOauth2LoginBundle\User;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\User;
 
-use SilasJoisten\SonataOauth2LoginBundle\Checker\Email;
-use SilasJoisten\SonataOauth2LoginBundle\Google\Authorization;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use Sonata\UserBundle\Entity\UserManager;

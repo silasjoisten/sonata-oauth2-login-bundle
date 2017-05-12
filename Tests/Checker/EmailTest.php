@@ -1,8 +1,8 @@
 <?php
 
-namespace SilasJoisten\SonataOauth2LoginBundle\Tests\Checker;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\Tests\Checker;
 
-use SilasJoisten\SonataOauth2LoginBundle\Checker\Email;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 
 class EmailTest extends \PHPUnit_Framework_TestCase
 {

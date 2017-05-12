@@ -1,6 +1,6 @@
 <?php
 
-namespace SilasJoisten\SonataOauth2LoginBundle\DependencyInjection;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
