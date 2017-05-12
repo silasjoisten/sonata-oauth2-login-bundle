@@ -14,12 +14,12 @@ class EmailTest extends \PHPUnit_Framework_TestCase
         $validEmailDomains = array(
             '@hotmail.de',
             '@gmail.com',
-            '@exozet.com',
+            '@example.com'
         );
 
-        $emailChecker = new Email($validEmailDomains);
+        $checker = new Email($validEmailDomains);
 
-        $this->assertEquals($expected, $emailChecker->isEmailValid($email));
+        $this->assertEquals($expected, $checker->isEmailValid($email));
     }
 
     /**
@@ -30,11 +30,11 @@ class EmailTest extends \PHPUnit_Framework_TestCase
         return array(
             array(true, 'test@hotmail.de'),
             array(true, 'test@gmail.com'),
-            array(true, 'test@exozet.com'),
+            array(true, 'test@example.com'),
             array(false, 'test@hotmail.com'),
             array(false, 'test@foobar.de'),
             array(false, 'test@gmail.de'),
-            array(false, 'test@exozet.de'),
+            array(false, 'test@example.de'),
             array(false, 'test@test.de'),
         );
     }
