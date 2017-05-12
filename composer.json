@@ -1,5 +1,5 @@
 {
-    "name": "silasjoisten/oauth2login-bundle",
+    "name": "silasjoisten/sonata-oauth2-login-bundle",
     "description": "A OAuth2LoginBundle to sign in Exozet members",
     "type": "symfony-bundle",
     "require": {
