@@ -4,6 +4,9 @@ namespace Exozet\Oauth2LoginBundle\Twig;
 
 class RenderButtonExtension extends \Twig_Extension
 {
+    /**
+     * @return array
+     */
     public function getFunctions()
     {
         return array(
@@ -14,6 +17,12 @@ class RenderButtonExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @param \Twig_Environment $environment
+     * @param array             $options
+     *
+     * @return string
+     */
     public function renderExozetLoginButton(\Twig_Environment $environment, array $options = array())
     {
         $defaults = array(
