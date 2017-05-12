@@ -23,13 +23,13 @@ Register Bundle in **app/AppKernel.php**:
 
 Include the Routing:
 ```yml
-sonata_oauth:
+sonata_oauth2:
     resource: "@Oauth2LoginBundle/Resources/config/routing.xml"
 ```
 
 Configure the Bundle:
 ```yml
-sonata_oauth_login:
+sonata_oauth2_login:
     valid_email_domains: ["@exozet.com"]
     default_user_roles: ["ROLE_SONATA_ADMIN"]
 ```
@@ -43,7 +43,7 @@ in security.yml:
 security:
    providers:
       hwi:
-         id: silasjoisten.oauth2.user.provider
+         id: sonata_oauth2_login.user.provider
 
          #...
 
@@ -58,7 +58,7 @@ security:
             default_target_path: /admin/dashboard           # For Sonata Admin
             failure_path:      /admin/login                 # For Sonata Admin
             oauth_user_provider:
-               service:  silasjoisten.oauth2.user.provider
+               service:  sonata_oauth2_login.user.provider
 ```
 
 in config.yml:
