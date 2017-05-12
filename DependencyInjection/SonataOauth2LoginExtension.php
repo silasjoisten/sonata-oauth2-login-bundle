@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class Oauth2LoginExtension extends Extension
+class SonataOauth2LoginExtension extends Extension
 {
     /**
      * {@inheritdoc}

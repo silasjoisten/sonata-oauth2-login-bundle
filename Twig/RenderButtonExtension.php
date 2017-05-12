@@ -36,7 +36,7 @@ class RenderButtonExtension extends \Twig_Extension
         $options = array_merge($defaults, $options);
 
         return $environment->render(
-            '@Oauth2Login/Default/button_login.html.twig',
+            '@SonataOauth2Login/Default/button_login.html.twig',
             array(
                 'options' => $options
             )
