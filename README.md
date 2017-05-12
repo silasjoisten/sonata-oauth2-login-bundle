@@ -2,24 +2,9 @@
 
 ### Installation
 
-In your composer.json add:
-```json
-    {
-      //...
-      "require": {
-            //...
-            "silasjoisten/sonata-oauth2-login-bundle": "dev-master"
-       },
-       "repositories" : [{
-           "type" : "vcs",
-           "url" : "https://github.com/silasjoisten/sonata-oauth2-login-bundle.git"
-       }]
-    }
-```
-
-After that execute:
+Require Composer:
 ```console
-    composer update exozet/oauth2login-bundle
+    composer require silasjoisten/sonata-oauth2-login-bundle
 ```
 
 Register Bundle in **app/AppKernel.php**:
@@ -30,7 +15,7 @@ Register Bundle in **app/AppKernel.php**:
      {
         //...
         new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-        new Exozet\Oauth2LoginBundle\ExozetOauth2LoginBundle(),
+        new SilasJoisten\Sonata\Oauth2LoginBundle\Oauth2LoginBundle(),
 //...
 ```
 
@@ -38,13 +23,13 @@ Register Bundle in **app/AppKernel.php**:
 
 Include the Routing:
 ```yml
-exozet_oauth:
-    resource: "@ExozetOauth2LoginBundle/Resources/config/routing.xml"
+sonata_oauth:
+    resource: "@SilasJoisten\Sonata\Oauth2LoginBundle/Resources/config/routing.xml"
 ```
 
 Configure the Bundle:
 ```yml
-exozet_oauth2_login:
+sonata_oauth_login:
     valid_email_domains: ["@exozet.com"]
     default_user_roles: ["ROLE_SONATA_ADMIN"]
 ```
@@ -58,7 +43,7 @@ in security.yml:
 security:
    providers:
       hwi:
-         id: exozet.oauth2.user.provider
+         id: silasjoisten.oauth2.user.provider
 
          #...
 
@@ -73,7 +58,7 @@ security:
             default_target_path: /admin/dashboard           # For Sonata Admin
             failure_path:      /admin/login                 # For Sonata Admin
             oauth_user_provider:
-               service:  exozet.oauth2.user.provider
+               service:  silasjoisten.oauth2.user.provider
 ```
 
 in config.yml:
@@ -93,10 +78,10 @@ hwi_oauth:
 
 ### Usage
 
-To use The Exozet Login you just need to call the Twig function to render the button in your login template like this:
+To use the Google Login you just need to call the Twig function to render the button in your login template like this:
 
 ```twig
-{{ render_exozet_login_button() }}
+{{ render_login_button() }}
 ```
 
 Optional: You can pass an *array* inside to to set custom *class* and *value*

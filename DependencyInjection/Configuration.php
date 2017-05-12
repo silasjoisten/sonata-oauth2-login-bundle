@@ -13,7 +13,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('silasjoisten_sonata_oauth2_login');
+        $rootNode = $treeBuilder->root('sonata_oauth_login');
         $rootNode
             ->children()
                 ->arrayNode('default_user_roles')
