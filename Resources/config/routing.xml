@@ -8,6 +8,6 @@
     <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" prefix="/connect" />
     <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" prefix="/login" />
 
-    <route id="exozet_google_login_check" path="/login/check-google">
+    <route id="sonata_google_login_check" path="/login/check-google">
     </route>
 </routes>

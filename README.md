@@ -24,7 +24,7 @@ Register Bundle in **app/AppKernel.php**:
 Include the Routing:
 ```yml
 sonata_oauth:
-    resource: "@SilasJoisten\Sonata\Oauth2LoginBundle/Resources/config/routing.xml"
+    resource: "@Oauth2LoginBundle/Resources/config/routing.xml"
 ```
 
 Configure the Bundle:
