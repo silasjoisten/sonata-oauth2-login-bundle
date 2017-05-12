@@ -16,11 +16,11 @@
     },
     "autoload" : {
         "psr-4" : {
-            "SilasJoisten\\SonataOauth2LoginBundle\\" : ""
+            "SilasJoisten\\Sonata\\Oauth2LoginBundle\\" : ""
         }
     },
     "autoload-dev": {
-        "psr-4": { "SilasJoisten\\SonataOauth2LoginBundle\\Tests\\": "Tests/" }
+        "psr-4": { "SilasJoisten\\Sonata\\Oauth2LoginBundle\\Tests\\": "Tests/" }
     },
     "license": "MIT",
     "authors": [
