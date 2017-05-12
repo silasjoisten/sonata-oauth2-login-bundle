@@ -6,7 +6,7 @@
          backupGlobals="false"
          colors="true">
     <testsuites>
-        <testsuite name="Exozet Oauth2 Login Bundle Test Suite">
+        <testsuite name="Bundle Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>

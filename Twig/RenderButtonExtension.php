@@ -1,6 +1,6 @@
 <?php
 
-namespace Exozet\Oauth2LoginBundle\Twig;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\Twig;
 
 class RenderButtonExtension extends \Twig_Extension
 {
@@ -11,9 +11,13 @@ class RenderButtonExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction(
-                'render_exozet_login_button',
-                array($this, 'renderExozetLoginButton'),
-                array('is_safe' => array('html'), 'needs_environment' => true)),
+                'render_login_button',
+                array($this, 'renderLoginButton'),
+                array(
+                    'is_safe' => array('html'),
+                    'needs_environment' => true
+                )
+            ),
         );
     }
 
@@ -27,10 +31,15 @@ class RenderButtonExtension extends \Twig_Extension
     {
         $defaults = array(
             'class' => 'btn btn-danger btn-block btn-flat',
-            'value' => 'Exozet Login'
+            'value' => 'Google Login'
         );
         $options = array_merge($defaults, $options);
 
-        return $environment->render('@ExozetOauth2Login/Default/exozet_login.html.twig', array('options' => $options));
+        return $environment->render(
+            '@SilasJoistenSonataOauth2Login/Default/button_login.html.twig',
+            array(
+                'options' => $options
+            )
+        );
     }
 }

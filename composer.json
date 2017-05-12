@@ -1,6 +1,6 @@
 {
     "name": "silasjoisten/sonata-oauth2-login-bundle",
-    "description": "A OAuth2LoginBundle to sign in Exozet members",
+    "description": "Login via Google with Email Validation in a Sonata Project",
     "type": "symfony-bundle",
     "require": {
         "symfony/symfony": "^2.8",
@@ -16,11 +16,11 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Exozet\\Oauth2LoginBundle\\" : ""
+            "SilasJoisten\\SonataOauth2LoginBundle\\" : ""
         }
     },
     "autoload-dev": {
-        "psr-4": { "Exozet\\Oauth2LoginBundle\\Tests\\": "Tests/" }
+        "psr-4": { "SilasJoisten\\SonataOauth2LoginBundle\\Tests\\": "Tests/" }
     },
     "license": "MIT",
     "authors": [

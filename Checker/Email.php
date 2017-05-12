@@ -1,6 +1,6 @@
 <?php
 
-namespace Exozet\Oauth2LoginBundle\Checker;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\Checker;
 
 class Email
 {

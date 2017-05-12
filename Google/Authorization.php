@@ -1,6 +1,6 @@
 <?php
 
-namespace Exozet\Oauth2LoginBundle\Google;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\Google;
 
 class Authorization
 {

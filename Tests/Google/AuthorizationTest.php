@@ -1,8 +1,8 @@
 <?php
 
-namespace Exozet\Oauth2LoginBundle\Tests\Google;
+namespace SilasJoisten\Sonata\Oauth2LoginBundle\Tests\Google;
 
-use Exozet\Oauth2LoginBundle\Google\Authorization;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 
 class AuthorizationTest extends \PHPUnit_Framework_TestCase
 {
