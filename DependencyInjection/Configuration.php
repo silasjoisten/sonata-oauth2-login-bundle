@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('valid_email_domains')
                     ->info('Needed for email domain validation')
-                    ->example('@exozet.com')
+                    ->example('@example.com')
                     ->prototype('scalar')->end()
                 ->end()
             ->end()
