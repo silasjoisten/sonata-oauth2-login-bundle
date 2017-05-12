@@ -6,7 +6,10 @@ use Exozet\Oauth2LoginBundle\Checker\Email;
 
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
-    public function testIsEmailValid()
+    /**
+     * @dataProvider isEmailValidProvider
+     */
+    public function testIsEmailValid($expected, $email)
     {
         $validEmailDomains = array(
             '@hotmail.de',
@@ -16,13 +19,23 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
         $emailChecker = new Email($validEmailDomains);
 
-        $this->assertTrue($emailChecker->isEmailValid('test@hotmail.de'));
-        $this->assertTrue($emailChecker->isEmailValid('test@gmail.com'));
-        $this->assertTrue($emailChecker->isEmailValid('test@exozet.com'));
-        $this->assertFalse($emailChecker->isEmailValid('test@hotmail.com'));
-        $this->assertFalse($emailChecker->isEmailValid('test@foobar.de'));
-        $this->assertFalse($emailChecker->isEmailValid('test@gmail.de'));
-        $this->assertFalse($emailChecker->isEmailValid('test@exozet.de'));
-        $this->assertFalse($emailChecker->isEmailValid('test@test.de'));
+        $this->assertEquals($expected, $emailChecker->isEmailValid($email));
+    }
+
+    /**
+     * @return array
+     */
+    public function isEmailValidProvider()
+    {
+        return array(
+            array(true, 'test@hotmail.de'),
+            array(true, 'test@gmail.com'),
+            array(true, 'test@exozet.com'),
+            array(false, 'test@hotmail.com'),
+            array(false, 'test@foobar.de'),
+            array(false, 'test@gmail.de'),
+            array(false, 'test@exozet.de'),
+            array(false, 'test@test.de'),
+        );
     }
 }
