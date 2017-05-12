@@ -1,4 +1,4 @@
-# Exozet/Oauth2LoginBundle
+# silasjoisten/sonata-oauth2-login-bundle
 
 ### Installation
 
@@ -8,11 +8,11 @@ In your composer.json add:
       //...
       "require": {
             //...
-            "silasjoisten/oauth2login-bundle": "dev-master"
+            "silasjoisten/sonata-oauth2-login-bundle": "dev-master"
        },
        "repositories" : [{
            "type" : "vcs",
-           "url" : "https://github.com/silasjoisten/oauth2-login-bundle.git"
+           "url" : "https://github.com/silasjoisten/sonata-oauth2-login-bundle.git"
        }]
     }
 ```
