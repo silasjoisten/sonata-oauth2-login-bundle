@@ -8,11 +8,11 @@ In your composer.json add:
       //...
       "require": {
             //...
-            "exozet/oauth2login-bundle": "dev-master"
+            "silasjoisten/oauth2login-bundle": "dev-master"
        },
        "repositories" : [{
            "type" : "vcs",
-           "url" : "git@git.exozet.com:exozet/oauth2login-bundle.git"
+           "url" : "https://github.com/silasjoisten/oauth2-login-bundle.git"
        }]
     }
 ```
