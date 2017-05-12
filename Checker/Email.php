@@ -20,7 +20,7 @@ class Email
     /**
      * @param string $email
      *
-     * @return boolean
+     * @return bool
      */
     public function isEmailValid($email)
     {
