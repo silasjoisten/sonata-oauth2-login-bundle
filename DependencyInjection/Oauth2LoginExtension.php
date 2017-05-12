@@ -25,7 +25,7 @@ class Oauth2LoginExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('sonata_oauth.valid_email_domains', $config['valid_email_domains']);
-        $container->setParameter('sonata_oauth.default_user_roles', $config['default_user_roles']);
+        $container->setParameter('sonata_oauth2_login.valid_email_domains', $config['valid_email_domains']);
+        $container->setParameter('sonata_oauth2_login.default_user_roles', $config['default_user_roles']);
     }
 }

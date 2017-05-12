@@ -27,7 +27,7 @@ class RenderButtonExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function renderExozetLoginButton(\Twig_Environment $environment, array $options = array())
+    public function renderLoginButton(\Twig_Environment $environment, array $options = array())
     {
         $defaults = array(
             'class' => 'btn btn-danger btn-block btn-flat',
