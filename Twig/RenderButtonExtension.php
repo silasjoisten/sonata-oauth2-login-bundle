@@ -15,7 +15,7 @@ class RenderButtonExtension extends \Twig_Extension
                 array($this, 'renderLoginButton'),
                 array(
                     'is_safe' => array('html'),
-                    'needs_environment' => true
+                    'needs_environment' => true,
                 )
             ),
         );
@@ -31,14 +31,14 @@ class RenderButtonExtension extends \Twig_Extension
     {
         $defaults = array(
             'class' => 'btn btn-danger btn-block btn-flat',
-            'value' => 'Google Login'
+            'value' => 'Google Login',
         );
         $options = array_merge($defaults, $options);
 
         return $environment->render(
             '@SonataOauth2Login/Default/button_login.html.twig',
             array(
-                'options' => $options
+                'options' => $options,
             )
         );
     }

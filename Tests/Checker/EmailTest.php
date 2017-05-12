@@ -14,7 +14,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
         $validEmailDomains = array(
             '@hotmail.de',
             '@gmail.com',
-            '@exozet.com'
+            '@exozet.com',
         );
 
         $emailChecker = new Email($validEmailDomains);

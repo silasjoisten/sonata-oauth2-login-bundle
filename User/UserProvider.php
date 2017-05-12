@@ -37,9 +37,9 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
 
     /**
      * @param UserManagerInterface $userManager
-     * @param Email $emailChecker
-     * @param Authorization $authorization
-     * @param array $defaultUserRoles
+     * @param Email                $emailChecker
+     * @param Authorization        $authorization
+     * @param array                $defaultUserRoles
      */
     public function __construct(UserManagerInterface $userManager, Email $emailChecker, Authorization $authorization, array $defaultUserRoles)
     {
@@ -50,7 +50,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     }
 
     /**
-     * @inheritdoc()
+     * {@inheritdoc}()
      */
     public function loadUserByUsername($username)
     {
@@ -90,19 +90,23 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function refreshUser(UserInterface $user)
     {
         if (!$this->supportsClass(get_class($user))) {
-            throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
+            throw new UnsupportedUserException(sprintf(
+                'Expected an instance of %s, but got "%s".',
+                $this->userManager->getClass(),
+                get_class($user)
+            ));
         }
 
         return $this->loadUserByUsername($user->getUsername());
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function supportsClass($class)
     {
