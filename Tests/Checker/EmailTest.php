@@ -7,9 +7,11 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 class EmailTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @test
+     *
      * @dataProvider isEmailValidProvider
      */
-    public function testIsEmailValid($expected, $email)
+    public function isEmailValid($expected, $email)
     {
         $validEmailDomains = array(
             '@hotmail.de',
