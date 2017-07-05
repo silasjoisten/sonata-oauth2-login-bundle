@@ -1,4 +1,4 @@
-# silasjoisten/sonata-oauth2-login-bundle
+SonataOAuth2LoginBundle
 
 ## Installation
 
