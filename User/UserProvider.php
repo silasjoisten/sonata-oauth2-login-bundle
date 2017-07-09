@@ -68,7 +68,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
             $client = $this->authorization->getClient();
             $client->revokeToken($token);
 
-            throw new AuthenticationException('Invalid Exozet Google Account');
+            throw new AuthenticationException('Invalid Google Account');
         }
 
         $user = $this->loadUserByUsername($response->getEmail());
