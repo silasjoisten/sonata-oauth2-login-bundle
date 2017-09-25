@@ -17,7 +17,7 @@ env:
 
 before_install:
   - make install
-  - phpenv config-add travis.php.ini
+  - phpenv config-add .ci/travis.php.ini
 
 install:
   - make install
