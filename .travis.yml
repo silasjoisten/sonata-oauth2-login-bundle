@@ -15,6 +15,7 @@ env:
   - SYMFONY_ENV=test SYMFONY_DEBUG=0
 
 install:
+  - make install
   - make cs
   - make test
 
