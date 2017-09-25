@@ -1,0 +1,24 @@
+language: php
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.0
+
+env:
+  - SYMFONY_ENV=test SYMFONY_DEBUG=0
+
+install:
+  - make install
+
+script:
+  - make cs
+  - make test
+
+notifications:
+  email: silas.joisten@hotmail.de

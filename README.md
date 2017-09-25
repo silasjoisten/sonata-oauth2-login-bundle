@@ -1,5 +1,7 @@
 SonataOAuth2LoginBundle
 
+[![Build Status](https://travis-ci.org/silasjoisten/sonata-oauth2-login-bundle.svg?branch=master)](https://travis-ci.org/silasjoisten/sonata-oauth2-login-bundle)
+
 ## Installation
 
 ```console
