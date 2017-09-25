@@ -1,0 +1,29 @@
+language: php
+sudo: false
+services:
+  - mysql
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.0
+    - php: hhvm
+  allow_failures:
+    - php: hhvm
+
+env:
+  - SYMFONY_ENV=test SYMFONY_DEBUG=0
+
+install:
+  - make cs
+  - make test
+
+script:
+  - bin/phpunit -c app/
+
+notifications:
+  email: silas.joisten@hotmail.de
