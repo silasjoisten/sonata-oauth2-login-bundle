@@ -15,6 +15,10 @@ matrix:
 env:
   - SYMFONY_ENV=test SYMFONY_DEBUG=0
 
+before_install:
+  - make install
+  - phpenv config-add travis.php.ini
+
 install:
   - make install
 
