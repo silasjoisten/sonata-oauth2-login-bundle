@@ -11,9 +11,7 @@ matrix:
   fast_finish: true
   include:
     - php: 7.0
-    - php: hhvm
-  allow_failures:
-    - php: hhvm
+    - php: 5.5
 
 env:
   - SYMFONY_ENV=test SYMFONY_DEBUG=0
