@@ -16,11 +16,10 @@ env:
 
 install:
   - make install
-  - make cs
-  - make test
 
 script:
-  - bin/phpunit -c app/
+  - make cs
+  - make test
 
 notifications:
   email: silas.joisten@hotmail.de
