@@ -16,7 +16,6 @@ env:
   - SYMFONY_ENV=test SYMFONY_DEBUG=0
 
 before_install:
-  - make install
   - phpenv config-add .ci/travis.php.ini
 
 install:
