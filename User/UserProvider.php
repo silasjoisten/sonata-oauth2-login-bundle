@@ -37,9 +37,9 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
 
     /**
      * @param UserManagerInterface $userManager
-     * @param Email                $emailChecker
-     * @param Authorization        $authorization
-     * @param array                $defaultUserRoles
+     * @param Email $emailChecker
+     * @param Authorization $authorization
+     * @param array $defaultUserRoles
      */
     public function __construct(UserManagerInterface $userManager, Email $emailChecker, Authorization $authorization, array $defaultUserRoles)
     {
@@ -64,7 +64,9 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     {
         $token = $response->getOAuthToken()->getRawToken();
 
-        if (!$this->emailChecker->isEmailValid($response->getEmail())) {
+        if (!$this->emailChecker->isEmailValid($response->getEmail())
+            && !$this->emailChecker->hasCustomRoles($response->getEmail())
+        ) {
             $client = $this->authorization->getClient();
             $client->revokeToken($token);
 
