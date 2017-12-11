@@ -26,6 +26,13 @@ class Configuration implements ConfigurationInterface
                     ->example('@example.com')
                     ->prototype('scalar')->end()
                 ->end()
+                ->arrayNode('custom_emails')
+                    ->defaultValue([])
+                    ->info('Customize Emails with specific role')
+                    ->arrayPrototype()
+                        ->scalarPrototype()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
