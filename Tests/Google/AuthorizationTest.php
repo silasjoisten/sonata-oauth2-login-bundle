@@ -2,9 +2,10 @@
 
 namespace SilasJoisten\Sonata\Oauth2LoginBundle\Tests\Google;
 
+use PHPUnit\Framework\TestCase;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 
-class AuthorizationTest extends \PHPUnit_Framework_TestCase
+class AuthorizationTest extends TestCase
 {
     public function testGetClient()
     {

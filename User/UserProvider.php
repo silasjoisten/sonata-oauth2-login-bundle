@@ -82,9 +82,13 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
             $user->setPassword('');
             $user->setEnabled(true);
             $user->setRoles($this->defaultUserRoles);
-
-            $this->userManager->save($user);
         }
+
+        if ($customRoles = $this->emailChecker->hasCustomRoles($response->getEmail())) {
+            $user->setRoles($customRoles);
+        }
+
+        $this->userManager->save($user);
 
         return $user;
     }

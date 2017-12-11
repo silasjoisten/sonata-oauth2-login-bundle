@@ -22,5 +22,6 @@ class SonataOauth2LoginExtension extends Extension
 
         $container->setParameter('sonata_oauth2_login.valid_email_domains', $config['valid_email_domains']);
         $container->setParameter('sonata_oauth2_login.default_user_roles', $config['default_user_roles']);
+        $container->setParameter('sonata_oauth2_login.custom_emails', $config['custom_emails']);
     }
 }
