@@ -37,6 +37,10 @@ SonataOauth2LoginBundle:
 sonata_oauth2_login:
     valid_email_domains: ["@your-domain.com"]
     default_user_roles: ["ROLE_SONATA_ADMIN"]
+    #optional value
+    custom_emails: 
+        test@example.com: ["ROLE_SUPER_ADMIN"]
+        test2@example.de: ["ROLE_SONATA_ADMIN"]
 ```
 
 _You can add as much valid domains as you want_
