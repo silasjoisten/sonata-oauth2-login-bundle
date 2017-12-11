@@ -17,7 +17,7 @@ class EmailTest extends TestCase
         $validEmailDomains = array(
             '@hotmail.de',
             '@gmail.com',
-            '@example.com'
+            '@example.com',
         );
 
         $checker = new Email($validEmailDomains);
@@ -51,7 +51,7 @@ class EmailTest extends TestCase
     {
         $customEmails = array(
             'bar.foo@goo.de' => 'ROLE_SUPER_ADMIN',
-            'test@example.com' => 'ROLE_SONATA_ADMIN'
+            'test@example.com' => 'ROLE_SONATA_ADMIN',
         );
 
         $checker = new Email(array(), $customEmails);

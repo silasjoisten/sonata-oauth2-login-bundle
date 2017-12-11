@@ -44,7 +44,7 @@ class UserProviderTest extends TestCase
         $this->authorization
             ->expects($this->never())
             ->method('getClient')
-            ->willReturn($this->client);;
+            ->willReturn($this->client);
 
         $this->client
             ->expects($this->never())
@@ -100,7 +100,7 @@ class UserProviderTest extends TestCase
         $this->authorization
             ->expects($this->never())
             ->method('getClient')
-            ->willReturn($this->client);;
+            ->willReturn($this->client);
 
         $this->client
             ->expects($this->never())
@@ -162,7 +162,7 @@ class UserProviderTest extends TestCase
         $this->authorization
             ->expects($this->never())
             ->method('getClient')
-            ->willReturn($this->client);;
+            ->willReturn($this->client);
 
         $this->client
             ->expects($this->never())
@@ -207,7 +207,7 @@ class UserProviderTest extends TestCase
 
     /**
      * @test
-     * @expectedException Symfony\Component\Security\Core\Exception\AuthenticationException
+     * @expectedException \Symfony\Component\Security\Core\Exception\AuthenticationException
      */
     public function loadUserByOAuthUserResponseException()
     {
@@ -224,7 +224,7 @@ class UserProviderTest extends TestCase
         $this->authorization
             ->expects($this->once())
             ->method('getClient')
-            ->willReturn($this->client);;
+            ->willReturn($this->client);
 
         $userProvider = new UserProvider(
             $this->userManager,
