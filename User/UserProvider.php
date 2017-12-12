@@ -87,7 +87,9 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
         }
 
         if ($customRoles = $this->emailChecker->hasCustomRoles($response->getEmail())) {
-            $user->setRoles($customRoles);
+            foreach ($customRoles as $customRole) {
+                $user->addRole($customRole);
+            }
         }
 
         $this->userManager->save($user);
