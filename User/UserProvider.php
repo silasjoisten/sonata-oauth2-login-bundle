@@ -37,9 +37,9 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
 
     /**
      * @param UserManagerInterface $userManager
-     * @param Email $emailChecker
-     * @param Authorization $authorization
-     * @param array $defaultUserRoles
+     * @param Email                $emailChecker
+     * @param Authorization        $authorization
+     * @param array                $defaultUserRoles
      */
     public function __construct(UserManagerInterface $userManager, Email $emailChecker, Authorization $authorization, array $defaultUserRoles)
     {
@@ -87,7 +87,9 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
         }
 
         if ($customRoles = $this->emailChecker->hasCustomRoles($response->getEmail())) {
-            $user->setRoles($customRoles);
+            foreach ($customRoles as $customRole) {
+                $user->addRole($customRole);
+            }
         }
 
         $this->userManager->save($user);
