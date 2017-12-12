@@ -60,6 +60,16 @@ class UserProviderTest extends TestCase
             ->method('getEmail')
             ->willReturn('test@email.com');
 
+        $this->response
+            ->expects($this->never())
+            ->method('getFirstName')
+            ->willReturn('Test');
+
+        $this->response
+            ->expects($this->never())
+            ->method('getLastName')
+            ->willReturn('Test-Lastname');
+
         $this->userManager
             ->expects($this->once())
             ->method('findUserByUsernameOrEmail')
@@ -168,6 +178,16 @@ class UserProviderTest extends TestCase
             ->method('getEmail')
             ->willReturn('fooo@email.com');
 
+        $this->response
+            ->expects($this->once())
+            ->method('getFirstName')
+            ->willReturn('Test');
+
+        $this->response
+            ->expects($this->once())
+            ->method('getLastName')
+            ->willReturn('Test-Lastname');
+
         $this->userManager
             ->expects($this->once())
             ->method('findUserByUsernameOrEmail')
@@ -192,6 +212,11 @@ class UserProviderTest extends TestCase
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
+        $this->assertEquals('fooo@email.com', $user->getEmail());
+        $this->assertEquals('fooo@email.com', $user->getUsername());
+        $this->assertEquals('Test', $user->getFirstname());
+        $this->assertEquals('Test-Lastname', $user->getLastname());
+        $this->assertEquals(array('ROLE_SONATA_ADMIN', 'ROLE_USER'), $user->getRoles());
     }
 
     /**
