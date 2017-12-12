@@ -7,9 +7,10 @@ use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use PHPUnit\Framework\TestCase;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Tests\Fixtures\User;
 use SilasJoisten\Sonata\Oauth2LoginBundle\User\UserProvider;
 use Sonata\UserBundle\Entity\UserManager;
-use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserProviderTest extends TestCase
 {
@@ -28,7 +29,7 @@ class UserProviderTest extends TestCase
 
         $this->response = $this->createMock(UserResponseInterface::class);
         $this->client = $this->createMock(\Google_Client::class);
-        $this->user = $this->createMock(UserInterface::class);
+        $this->user = new User();
     }
 
     /**
@@ -68,14 +69,12 @@ class UserProviderTest extends TestCase
         $this->userManager
             ->expects($this->once())
             ->method('save')
-            ->with($this->user)
-        ;
+            ->with($this->user);
 
         $this->userManager
             ->expects($this->never())
             ->method('create')
-            ->with($this->user)
-        ;
+            ->with($this->user);
 
         $userProvider = new UserProvider(
             $this->userManager,
@@ -124,20 +123,12 @@ class UserProviderTest extends TestCase
         $this->userManager
             ->expects($this->once())
             ->method('save')
-            ->with($this->user)
-        ;
+            ->with($this->user);
 
         $this->userManager
             ->expects($this->never())
             ->method('create')
-            ->with($this->user)
-        ;
-
-        $this->user
-            ->expects($this->once())
-            ->method('setRoles')
-            ->with(['ROLE_SUPER_ADMIN'])
-        ;
+            ->with($this->user);
 
         $userProvider = new UserProvider(
             $this->userManager,
@@ -186,14 +177,12 @@ class UserProviderTest extends TestCase
         $this->userManager
             ->expects($this->once())
             ->method('create')
-            ->willReturn($this->user)
-        ;
+            ->willReturn($this->user);
 
         $this->userManager
             ->expects($this->once())
             ->method('save')
-            ->with($this->user)
-        ;
+            ->with($this->user);
 
         $userProvider = new UserProvider(
             $this->userManager,
