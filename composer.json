@@ -3,7 +3,7 @@
   "description": "Login via Google with Email Validation in a Sonata Project",
   "type": "symfony-bundle",
   "require": {
-    "php": ">=5.5.9",
+    "php": ">=5.6",
     "symfony/symfony": "^2.8 || ^3.0 || ^4.0",
     "hwi/oauth-bundle": "^0.5",
     "google/apiclient": "^2.1",
