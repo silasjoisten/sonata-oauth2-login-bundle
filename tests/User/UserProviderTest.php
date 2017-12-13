@@ -7,7 +7,7 @@ use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use PHPUnit\Framework\TestCase;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
-use SilasJoisten\Sonata\Oauth2LoginBundle\Tests\Fixtures\User;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Test\Fixtures\User;
 use SilasJoisten\Sonata\Oauth2LoginBundle\User\UserProvider;
 use Sonata\UserBundle\Entity\UserManager;
 use Symfony\Component\Security\Core\User\UserInterface;
