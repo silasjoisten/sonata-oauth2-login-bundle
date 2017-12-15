@@ -6,8 +6,8 @@
          backupGlobals="false"
          colors="true">
     <testsuites>
-        <testsuite name="Bundle Test Suite">
-            <directory>./Tests</directory>
+        <testsuite name="Sonata OAuth2 Login Bundle Test Suite">
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 
