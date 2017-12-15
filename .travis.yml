@@ -5,16 +5,29 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
+env:
+  global:
+    - SYMFONY_DEPRECATIONS_HELPER=weak_vendors
+
+stages:
+  - lint
+  - test
+  - future
+
 matrix:
   fast_finish: true
   include:
-    - php: 5.6
-    - php: 7.0
-    - php: 7.1
-    - php: 7.2
-
-env:
-  - SYMFONY_ENV=test SYMFONY_DEBUG=0
+    - stage: lint
+      php: 7.2
+      script: make cs
+    - stage: test
+      php: 5.6
+    - stage: test
+      php: 7.0
+    - stage: test
+      php: 7.1
+    - stage: test
+      php: 7.2
 
 before_install:
   - phpenv config-add .ci/travis.php.ini
@@ -23,7 +36,6 @@ install:
   - make install
 
 script:
-  - make cs
   - make test
 
 notifications:
