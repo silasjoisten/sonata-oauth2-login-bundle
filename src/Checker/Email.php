@@ -32,7 +32,7 @@ class Email
     public function isEmailValid($email)
     {
         foreach ($this->validDomains as $validDomain) {
-            if (strpos($email, $validDomain) !== false) {
+            if (false !== strpos($email, $validDomain)) {
                 return true;
             }
         }
