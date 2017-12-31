@@ -1,5 +1,3 @@
 services:
   phpcsfixer: true
-  xmllint:
-    version:        latest
-    path:         .
+  xmllint: true
