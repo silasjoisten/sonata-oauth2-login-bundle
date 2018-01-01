@@ -1,12 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<routes xmlns="http://symfony.com/schema/routing"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
-
-    <import resource="@HWIOAuthBundle/Resources/config/routing/redirect.xml" prefix="/connect" />
-    <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" prefix="/connect" />
-    <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" prefix="/login" />
-
-    <route id="sonata_google_login_check" path="/login/check-google" />
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+    <import resource="@HWIOAuthBundle/Resources/config/routing/redirect.xml" prefix="/connect"/>
+    <import resource="@HWIOAuthBundle/Resources/config/routing/connect.xml" prefix="/connect"/>
+    <import resource="@HWIOAuthBundle/Resources/config/routing/login.xml" prefix="/login"/>
+    <route id="sonata_google_login_check" path="/login/check-google"/>
 </routes>
