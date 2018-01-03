@@ -1,6 +1,10 @@
 # silasjoisten/sonata-oauth2-login-bundle 
 
- [![Build Status](https://travis-ci.org/silasjoisten/sonata-oauth2-login-bundle.svg?branch=master)](https://travis-ci.org/silasjoisten/sonata-oauth2-login-bundle)
+[![Build Status](https://travis-ci.org/silasjoisten/sonata-oauth2-login-bundle.svg?branch=master)](https://travis-ci.org/silasjoisten/sonata-oauth2-login-bundle)
+[![Latest Stable Version](https://poser.pugx.org/silasjoisten/sonata-oauth2-login-bundle/v/stable)](https://packagist.org/packages/silasjoisten/sonata-oauth2-login-bundle)
+[![Total Downloads](https://poser.pugx.org/silasjoisten/sonata-oauth2-login-bundle/downloads)](https://packagist.org/packages/silasjoisten/sonata-oauth2-login-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/silasjoisten/sonata-oauth2-login-bundle/v/unstable)](https://packagist.org/packages/silasjoisten/sonata-oauth2-login-bundle)
+[![License](https://poser.pugx.org/silasjoisten/sonata-oauth2-login-bundle/license)](https://packagist.org/packages/silasjoisten/sonata-oauth2-login-bundle)
 
 ## Installation
 
