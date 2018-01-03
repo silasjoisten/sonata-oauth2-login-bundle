@@ -10,16 +10,11 @@ env:
     - SYMFONY_DEPRECATIONS_HELPER=weak_vendors
 
 stages:
-  - lint
   - test
-  - future
 
 matrix:
   fast_finish: true
   include:
-    - stage: lint
-      php: 7.2
-      script: make cs
     - stage: test
       php: 5.6
     - stage: test
