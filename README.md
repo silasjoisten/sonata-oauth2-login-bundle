@@ -19,6 +19,7 @@ Register the Bundle in **app/AppKernel.php**:
      public function registerBundles()
      {
         // ..
+        new Http\HttplugBundle\HttplugBundle(),
         new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         new SilasJoisten\Sonata\Oauth2LoginBundle\SonataOauth2LoginBundle(),
         // ..
