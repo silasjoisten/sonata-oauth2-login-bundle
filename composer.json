@@ -21,7 +21,7 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.2",
     "matthiasnoback/symfony-dependency-injection-test": "^1.2",
-    "phpunit/phpunit": "^6.0",
+    "phpunit/phpunit": "^5.4",
     "sensio/generator-bundle": "^2.3",
     "symfony/phpunit-bridge": "^2.7"
   },
