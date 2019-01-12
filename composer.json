@@ -6,7 +6,7 @@
   "authors": [
     {
       "name": "Silas Joisten",
-      "email": "silasjoisten@hotmail.de"
+      "email": "silasjoisten@gmail.com"
     }
   ],
   "require": {
@@ -21,7 +21,7 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.2",
     "matthiasnoback/symfony-dependency-injection-test": "^1.2",
-    "phpunit/phpunit": "^5.4",
+    "phpunit/phpunit": "^7.0",
     "sensio/generator-bundle": "^2.3",
     "symfony/phpunit-bridge": "^2.7"
   },

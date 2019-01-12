@@ -1,37 +1,45 @@
 language: php
+
+php:
+- '7.0'
+- '7.1'
+- '7.2'
+- '7.3'
+
 sudo: false
+dist: trusty
 
 cache:
+  pip: true
   directories:
-    - $HOME/.composer/cache/files
+  - $HOME/.composer/cache/files
 
 env:
   global:
-    - SYMFONY_DEPRECATIONS_HELPER=weak_vendors
-
-stages:
-  - test
+  - PATH="$HOME/.local/bin:$PATH"
+  - SYMFONY_DEPRECATIONS_HELPER=weak_vendors
+  - PHPUNIT_VERSION=7
 
 matrix:
   fast_finish: true
   include:
-    - stage: test
-      php: 7.0
-    - stage: test
-      php: 7.1
-    - stage: test
-      php: 7.2
-    - stage: test
-      php: 7.3
-
-before_install:
-  - phpenv config-add .ci/travis.php.ini
+  - php: '7.3'
+    stage: test
+  - php: '7.2'
+    stage: test
+  - php: '7.1'
+    stage: test
+  - php: '7.0'
+    stage: test
 
 install:
-  - make install
+- make install
 
 script:
-  - make test
+- make test
 
 notifications:
   email: silasjoisten@gmail.com
+
+#before_install:
+#  - phpenv config-add .ci/travis.php.ini
