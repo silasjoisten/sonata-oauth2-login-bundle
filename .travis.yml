@@ -3,9 +3,9 @@ sudo: false
 dist: trusty
 
 php:
-  - 7.1
-  - 7.2
-  - 7.3
+  - '7.2'
+  - '7.3'
+  - '7.4'
 
 cache:
   directories:
@@ -15,7 +15,7 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR=.phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=weak_vendors
+    - SYMFONY_DEPRECATIONS_HELPER=weak
 
 before_install:
   - phpenv config-add .ci/travis.php.ini

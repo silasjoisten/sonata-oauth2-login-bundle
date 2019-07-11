@@ -7,7 +7,7 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 
 class AuthorizationTest extends TestCase
 {
-    public function testGetClient()
+    public function testGetClient(): void
     {
         $client = $this->createMock(\Google_Client::class);
         $client->expects($this->once())->method('setAccessType');

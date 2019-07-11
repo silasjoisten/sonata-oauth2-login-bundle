@@ -22,7 +22,7 @@ class UserProviderTest extends TestCase
     protected $client;
     protected $user;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->userManager = $this->createMock(UserManager::class);
         $this->authorization = $this->createMock(Authorization::class);
@@ -32,10 +32,7 @@ class UserProviderTest extends TestCase
         $this->user = new User();
     }
 
-    /**
-     * @test
-     */
-    public function loadUserByOAuthUserResponseValidEmail()
+    public function testLoadUserByOAuthUserResponseValidEmail(): void
     {
         $this->response
             ->expects($this->once())
@@ -96,10 +93,7 @@ class UserProviderTest extends TestCase
         $this->assertInstanceOf(UserInterface::class, $user);
     }
 
-    /**
-     * @test
-     */
-    public function loadUserByOAuthUserResponseValidEmailAndValidCustomEmails()
+    public function testLoadUserByOAuthUserResponseValidEmailAndValidCustomEmails(): void
     {
         $this->response
             ->expects($this->once())
@@ -150,10 +144,7 @@ class UserProviderTest extends TestCase
         $this->assertInstanceOf(UserInterface::class, $user);
     }
 
-    /**
-     * @test
-     */
-    public function loadUserByOAuthUserResponseCreateUserByEmail()
+    public function testLoadUserByOAuthUserResponseCreateUserByEmail(): void
     {
         $this->response
             ->expects($this->once())
@@ -223,7 +214,7 @@ class UserProviderTest extends TestCase
      * @test
      * @expectedException \Symfony\Component\Security\Core\Exception\AuthenticationException
      */
-    public function loadUserByOAuthUserResponseException()
+    public function testLoadUserByOAuthUserResponseException(): void
     {
         $this->response
             ->expects($this->once())

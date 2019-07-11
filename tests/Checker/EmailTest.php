@@ -8,11 +8,9 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 class EmailTest extends TestCase
 {
     /**
-     * @test
-     *
      * @dataProvider isEmailValidProvider
      */
-    public function isEmailValid($expected, $email)
+    public function testIsEmailValid($expected, $email): void
     {
         $validEmailDomains = array(
             '@hotmail.de',
@@ -28,7 +26,7 @@ class EmailTest extends TestCase
     /**
      * @return array
      */
-    public function isEmailValidProvider()
+    public function isEmailValidProvider(): array
     {
         return array(
             array(true, 'test@hotmail.de'),
@@ -43,11 +41,9 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @test
-     *
      * @dataProvider hasCustomRolesProvider
      */
-    public function hasCustomRoles($expected, $email)
+    public function testHasCustomRoles($expected, $email): void
     {
         $customEmails = array(
             'bar.foo@goo.de' => 'ROLE_SUPER_ADMIN',
@@ -62,7 +58,7 @@ class EmailTest extends TestCase
     /**
      * @return array
      */
-    public function hasCustomRolesProvider()
+    public function hasCustomRolesProvider(): array
     {
         return array(
             array('ROLE_SUPER_ADMIN', 'bar.foo@goo.de'),

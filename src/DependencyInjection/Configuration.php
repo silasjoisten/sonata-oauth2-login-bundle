@@ -12,8 +12,15 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('sonata_oauth2_login');
+        $treeBuilder = new TreeBuilder('sonata_oauth2_login');
+
+        // Keep compatibility with symfony/config < 4.2
+        if (!method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->root('sonata_admin');
+        } else {
+            $rootNode = $treeBuilder->getRootNode();
+        }
+
         $rootNode
             ->children()
                 ->arrayNode('default_user_roles')
