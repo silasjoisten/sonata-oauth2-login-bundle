@@ -12,11 +12,11 @@ class EmailTest extends TestCase
      */
     public function testIsEmailValid($expected, $email): void
     {
-        $validEmailDomains = array(
+        $validEmailDomains = [
             '@hotmail.de',
             '@gmail.com',
             '@example.com',
-        );
+        ];
 
         $checker = new Email($validEmailDomains);
 
@@ -28,16 +28,16 @@ class EmailTest extends TestCase
      */
     public function isEmailValidProvider(): array
     {
-        return array(
-            array(true, 'test@hotmail.de'),
-            array(true, 'test@gmail.com'),
-            array(true, 'test@example.com'),
-            array(false, 'test@hotmail.com'),
-            array(false, 'test@foobar.de'),
-            array(false, 'test@gmail.de'),
-            array(false, 'test@example.de'),
-            array(false, 'test@test.de'),
-        );
+        return [
+           [true, 'test@hotmail.de'],
+            [true, 'test@gmail.com'],
+            [true, 'test@example.com'],
+            [false, 'test@hotmail.com'],
+            [false, 'test@foobar.de'],
+            [false, 'test@gmail.de'],
+            [false, 'test@example.de'],
+            [false, 'test@test.de'],
+        ];
     }
 
     /**
@@ -45,12 +45,12 @@ class EmailTest extends TestCase
      */
     public function testHasCustomRoles($expected, $email): void
     {
-        $customEmails = array(
+        $customEmails = [
             'bar.foo@goo.de' => 'ROLE_SUPER_ADMIN',
             'test@example.com' => 'ROLE_SONATA_ADMIN',
-        );
+        ];
 
-        $checker = new Email(array(), $customEmails);
+        $checker = new Email([], $customEmails);
 
         $this->assertEquals($expected, $checker->hasCustomRoles($email));
     }
@@ -60,15 +60,15 @@ class EmailTest extends TestCase
      */
     public function hasCustomRolesProvider(): array
     {
-        return array(
-            array('ROLE_SUPER_ADMIN', 'bar.foo@goo.de'),
-            array(false, 'test@gmail.com'),
-            array('ROLE_SONATA_ADMIN', 'test@example.com'),
-            array(false, 'test@hotmail.com'),
-            array(false, 'test@foobar.de'),
-            array(false, 'test@gmail.de'),
-            array(false, 'test@example.de'),
-            array(false, 'test@test.de'),
-        );
+        return [
+            ['ROLE_SUPER_ADMIN', 'bar.foo@goo.de'],
+            [false, 'test@gmail.com'],
+            ['ROLE_SONATA_ADMIN', 'test@example.com'],
+            [false, 'test@hotmail.com'],
+            [false, 'test@foobar.de'],
+            [false, 'test@gmail.de'],
+            [false, 'test@example.de'],
+            [false, 'test@test.de'],
+        ];
     }
 }

@@ -87,7 +87,7 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']);
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
@@ -138,7 +138,7 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']);
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
@@ -199,7 +199,7 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']);
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
@@ -207,7 +207,7 @@ class UserProviderTest extends TestCase
         $this->assertEquals('fooo@email.com', $user->getUsername());
         $this->assertEquals('Test', $user->getFirstname());
         $this->assertEquals('Test-Lastname', $user->getLastname());
-        $this->assertEquals(array('ROLE_SONATA_ADMIN', 'ROLE_USER'), $user->getRoles());
+        $this->assertEquals(['ROLE_SONATA_ADMIN', 'ROLE_USER'], $user->getRoles());
     }
 
     /**
@@ -235,7 +235,8 @@ class UserProviderTest extends TestCase
             $this->userManager,
             new Email(['test@email.com']),
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']
+        );
 
         $userProvider->loadUserByOAuthUserResponse($this->response);
     }
