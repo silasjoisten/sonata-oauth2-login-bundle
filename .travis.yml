@@ -1,10 +1,13 @@
 language: php
 sudo: false
-dist: trusty
 
-php:
-  - '7.2'
-  - '7.3'
+matrix:
+  fast_finish: true
+  include:
+    - stage: test
+      php: '7.2'
+    - stage: test
+      php: '7.3'
 
 cache:
   directories:
@@ -14,17 +17,18 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR=.phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=weak
+    - SYMFONY_DEPRECATIONS_HELPER=weak_vendors
 
 before_install:
   - phpenv config-add .ci/travis.php.ini
   - phpenv config-rm xdebug.ini
 
-install:
-  - composer install --no-interaction --classmap-authoritative --optimize-autoloader -vvv
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit
+  - php vendor/bin/phpunit
 
 notifications:
   email: silasjoisten@gmail.com

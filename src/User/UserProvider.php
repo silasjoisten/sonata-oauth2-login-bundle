@@ -50,7 +50,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     }
 
     /**
-     * {@inheritdoc}()
+     * {@inheritdoc}
      */
     public function loadUserByUsername($username)
     {
