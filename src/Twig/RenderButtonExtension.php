@@ -27,7 +27,7 @@ class RenderButtonExtension extends AbstractExtension
 
     /**
      * @param Environment $environment
-     * @param array             $options
+     * @param array       $options
      *
      * @return string
      */
