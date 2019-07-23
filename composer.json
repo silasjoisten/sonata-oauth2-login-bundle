@@ -12,17 +12,20 @@
   "require": {
     "php": "^7.2",
     "google/apiclient": "^2.1",
+    "hwi/oauth-bundle": "^0.6.1",
     "php-http/guzzle6-adapter": "^1.1",
     "php-http/httplug-bundle": "^1.10",
-    "hwi/oauth-bundle": "^0.6.1",
-    "twig/twig": "^2.0",
-    "sonata-project/user-bundle": "^4.4"
+    "sonata-project/user-bundle": "^4.4",
+    "twig/twig": "^2.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.15",
     "matthiasnoback/symfony-dependency-injection-test": "^4.0",
     "phpunit/phpunit": "^8.2",
     "symfony/phpunit-bridge": "^4.3"
+  },
+  "config": {
+    "sort-packages": true
   },
   "autoload": {
     "psr-4": {
@@ -33,8 +36,5 @@
     "psr-4": {
       "SilasJoisten\\Sonata\\Oauth2LoginBundle\\Tests\\": "tests/"
     }
-  },
-  "config": {
-    "sort-packages": true
   }
 }
