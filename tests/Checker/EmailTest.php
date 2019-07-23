@@ -20,7 +20,7 @@ class EmailTest extends TestCase
 
         $checker = new Email($validEmailDomains);
 
-        $this->assertEquals($expected, $checker->isEmailValid($email));
+        $this->assertSame($expected, $checker->isEmailValid($email));
     }
 
     /**
@@ -52,7 +52,7 @@ class EmailTest extends TestCase
 
         $checker = new Email([], $customEmails);
 
-        $this->assertEquals($expected, $checker->hasCustomRoles($email));
+        $this->assertSame($expected, $checker->hasCustomRoles($email));
     }
 
     /**
@@ -61,14 +61,48 @@ class EmailTest extends TestCase
     public function hasCustomRolesProvider(): array
     {
         return [
-            ['ROLE_SUPER_ADMIN', 'bar.foo@goo.de'],
+            [true, 'bar.foo@goo.de'],
             [false, 'test@gmail.com'],
-            ['ROLE_SONATA_ADMIN', 'test@example.com'],
+            [true, 'test@example.com'],
             [false, 'test@hotmail.com'],
             [false, 'test@foobar.de'],
             [false, 'test@gmail.de'],
             [false, 'test@example.de'],
             [false, 'test@test.de'],
+        ];
+    }
+
+    /**
+     * @dataProvider getCustomRolesProvider
+     */
+    public function testGetCustomRoles($expected, $email): void
+    {
+        $customEmails = [
+            'bar.foo@goo.de' => ['ROLE_SUPER_ADMIN'],
+            'test@example.com' => ['ROLE_SONATA_ADMIN'],
+            'some@email.com' => ['ROLE_USER_MANAGER', 'ROLE_SONATA_ADMIN'],
+        ];
+
+        $checker = new Email([], $customEmails);
+
+        $this->assertSame($expected, $checker->getCustomRoles($email));
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomRolesProvider(): array
+    {
+        return [
+            [['ROLE_SUPER_ADMIN'], 'bar.foo@goo.de'],
+            [[], 'test@gmail.com'],
+            [['ROLE_SONATA_ADMIN'], 'test@example.com'],
+            [[], 'test@hotmail.com'],
+            [[], 'test@foobar.de'],
+            [[], 'test@gmail.de'],
+            [[], 'test@example.de'],
+            [[], 'test@test.de'],
+            [['ROLE_USER_MANAGER', 'ROLE_SONATA_ADMIN'], 'some@email.com'],
         ];
     }
 }

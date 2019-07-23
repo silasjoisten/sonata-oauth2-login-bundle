@@ -10,12 +10,12 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Test\Fixtures\User;
 use SilasJoisten\Sonata\Oauth2LoginBundle\User\UserProvider;
 use Sonata\UserBundle\Entity\UserManager;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserProviderTest extends TestCase
 {
     protected $userManager;
-    protected $email;
     protected $authorization;
     protected $response;
     protected $token;
@@ -138,7 +138,8 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            ['ROLE_SONATA_ADMIN']);
+            ['ROLE_SONATA_ADMIN']
+        );
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
@@ -210,16 +211,19 @@ class UserProviderTest extends TestCase
         $this->assertEquals(['ROLE_SONATA_ADMIN', 'ROLE_USER'], $user->getRoles());
     }
 
-    /**
-     * @test
-     * @expectedException \Symfony\Component\Security\Core\Exception\AuthenticationException
-     */
     public function testLoadUserByOAuthUserResponseException(): void
     {
+        $this->expectException(AuthenticationException::class);
+
         $this->response
             ->expects($this->once())
             ->method('getOAuthToken')
             ->willReturn(new OAuthToken('thisIsaTestSecret'));
+
+        $this->response
+            ->expects($this->exactly(2))
+            ->method('getEmail')
+            ->willReturn('fooo@gmail.com');
 
         $this->client
             ->expects($this->once())

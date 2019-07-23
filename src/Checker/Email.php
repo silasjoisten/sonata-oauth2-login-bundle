@@ -2,7 +2,7 @@
 
 namespace SilasJoisten\Sonata\Oauth2LoginBundle\Checker;
 
-class Email
+final class Email
 {
     /**
      * @var array
@@ -45,8 +45,18 @@ class Email
      *
      * @return string|null
      */
-    public function hasCustomRoles(string $email): ?string
+    public function hasCustomRoles(string $email): bool
     {
-        return isset($this->customEmailRoles[$email]) ? $this->customEmailRoles[$email] : null;
+        return isset($this->customEmailRoles[$email]) ?? false;
+    }
+
+    /**
+     * @param string $email
+     *
+     * @return array
+     */
+    public function getCustomRoles(string $email): array
+    {
+        return $this->customEmailRoles[$email] ?? [];
     }
 }
