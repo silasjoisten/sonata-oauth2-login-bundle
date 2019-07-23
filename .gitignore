@@ -3,3 +3,4 @@ vendor
 .php_cs.cache
 .composer/
 .phpunit.result.cache
+composer.lock
