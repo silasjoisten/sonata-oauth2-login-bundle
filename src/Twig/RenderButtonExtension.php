@@ -11,9 +11,9 @@ class RenderButtonExtension extends AbstractExtension
     /**
      * @return array
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
-        return array(
+        return [
             new TwigFunction(
                 'render_login_button',
                 [$this, 'renderLoginButton'],
@@ -22,7 +22,7 @@ class RenderButtonExtension extends AbstractExtension
                     'needs_environment' => true,
                 ]
             ),
-        );
+        ];
     }
 
     /**
@@ -31,7 +31,7 @@ class RenderButtonExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderLoginButton(Environment $environment, array $options = [])
+    public function renderLoginButton(Environment $environment, array $options = []): string
     {
         $defaults = [
             'class' => 'btn btn-danger btn-block btn-flat',

@@ -18,7 +18,7 @@ class Email
      * @param array $validDomains
      * @param array $customEmailRoles
      */
-    public function __construct(array $validDomains, array $customEmailRoles = array())
+    public function __construct(array $validDomains, array $customEmailRoles = [])
     {
         $this->validDomains = $validDomains;
         $this->customEmailRoles = $customEmailRoles;
@@ -29,7 +29,7 @@ class Email
      *
      * @return bool
      */
-    public function isEmailValid($email)
+    public function isEmailValid(string $email): bool
     {
         foreach ($this->validDomains as $validDomain) {
             if (false !== strpos($email, $validDomain)) {
@@ -43,10 +43,10 @@ class Email
     /**
      * @param string $email
      *
-     * @return bool|string
+     * @return string|null
      */
-    public function hasCustomRoles($email)
+    public function hasCustomRoles(string $email): ?string
     {
-        return isset($this->customEmailRoles[$email]) ? $this->customEmailRoles[$email] : false;
+        return isset($this->customEmailRoles[$email]) ? $this->customEmailRoles[$email] : null;
     }
 }

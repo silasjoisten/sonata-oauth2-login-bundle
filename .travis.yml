@@ -25,7 +25,7 @@ before_install:
 
 before_script:
   - travis_retry composer self-update
-  - travis_wait 3600 composer install --no-interaction --prefer-source
+  - travis_retry composer install --no-interaction --prefer-source
 
 script:
   - php vendor/bin/phpunit

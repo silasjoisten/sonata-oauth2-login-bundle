@@ -20,7 +20,7 @@ class Authorization
     /**
      * @return \Google_Client
      */
-    public function getClient()
+    public function getClient(): \Google_Client
     {
         $this->client->setAccessType('offline');
 
