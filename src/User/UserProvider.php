@@ -35,12 +35,6 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
      */
     private $defaultUserRoles;
 
-    /**
-     * @param UserManagerInterface $userManager
-     * @param Email                $emailChecker
-     * @param Authorization        $authorization
-     * @param array                $defaultUserRoles
-     */
     public function __construct(
         UserManagerInterface $userManager,
         Email $emailChecker,

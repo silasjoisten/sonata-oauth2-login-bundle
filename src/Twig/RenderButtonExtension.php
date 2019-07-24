@@ -8,9 +8,6 @@ use Twig\TwigFunction;
 
 class RenderButtonExtension extends AbstractExtension
 {
-    /**
-     * @return array
-     */
     public function getFunctions(): array
     {
         return [
@@ -25,12 +22,6 @@ class RenderButtonExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @param Environment $environment
-     * @param array       $options
-     *
-     * @return string
-     */
     public function renderLoginButton(Environment $environment, array $options = []): string
     {
         $defaults = [

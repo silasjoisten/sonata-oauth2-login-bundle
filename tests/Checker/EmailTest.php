@@ -23,9 +23,6 @@ class EmailTest extends TestCase
         $this->assertSame($expected, $checker->isEmailValid($email));
     }
 
-    /**
-     * @return array
-     */
     public function isEmailValidProvider(): array
     {
         return [
@@ -55,9 +52,6 @@ class EmailTest extends TestCase
         $this->assertSame($expected, $checker->hasCustomRoles($email));
     }
 
-    /**
-     * @return array
-     */
     public function hasCustomRolesProvider(): array
     {
         return [
@@ -88,9 +82,6 @@ class EmailTest extends TestCase
         $this->assertSame($expected, $checker->getCustomRoles($email));
     }
 
-    /**
-     * @return array
-     */
     public function getCustomRolesProvider(): array
     {
         return [

@@ -22,9 +22,6 @@ class SonataOauth2LoginExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService($service);
     }
 
-    /**
-     * @return array
-     */
     public function availableSecurityProvider(): array
     {
         return [
@@ -32,9 +29,6 @@ class SonataOauth2LoginExtensionTest extends AbstractExtensionTestCase
         ];
     }
 
-    /**
-     * @return array
-     */
     public function availableServicesProvider(): array
     {
         return [
@@ -44,9 +38,6 @@ class SonataOauth2LoginExtensionTest extends AbstractExtensionTestCase
         ];
     }
 
-    /**
-     * @return array
-     */
     public function availableTwigExtensionsProvider(): array
     {
         return [

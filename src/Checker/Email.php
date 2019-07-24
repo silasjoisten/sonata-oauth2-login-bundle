@@ -14,21 +14,12 @@ final class Email
      */
     private $customEmailRoles;
 
-    /**
-     * @param array $validDomains
-     * @param array $customEmailRoles
-     */
     public function __construct(array $validDomains, array $customEmailRoles = [])
     {
         $this->validDomains = $validDomains;
         $this->customEmailRoles = $customEmailRoles;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return bool
-     */
     public function isEmailValid(string $email): bool
     {
         foreach ($this->validDomains as $validDomain) {
@@ -41,8 +32,6 @@ final class Email
     }
 
     /**
-     * @param string $email
-     *
      * @return string|null
      */
     public function hasCustomRoles(string $email): bool
@@ -50,11 +39,6 @@ final class Email
         return isset($this->customEmailRoles[$email]) ?? false;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return array
-     */
     public function getCustomRoles(string $email): array
     {
         return $this->customEmailRoles[$email] ?? [];
