@@ -2,7 +2,7 @@
 
 namespace SilasJoisten\Sonata\Oauth2LoginBundle\Checker;
 
-class Email
+final class Email
 {
     /**
      * @var array
@@ -14,22 +14,13 @@ class Email
      */
     private $customEmailRoles;
 
-    /**
-     * @param array $validDomains
-     * @param array $customEmailRoles
-     */
-    public function __construct(array $validDomains, array $customEmailRoles = array())
+    public function __construct(array $validDomains, array $customEmailRoles = [])
     {
         $this->validDomains = $validDomains;
         $this->customEmailRoles = $customEmailRoles;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return bool
-     */
-    public function isEmailValid($email)
+    public function isEmailValid(string $email): bool
     {
         foreach ($this->validDomains as $validDomain) {
             if (false !== strpos($email, $validDomain)) {
@@ -41,12 +32,15 @@ class Email
     }
 
     /**
-     * @param string $email
-     *
-     * @return bool|string
+     * @return string|null
      */
-    public function hasCustomRoles($email)
+    public function hasCustomRoles(string $email): bool
     {
-        return isset($this->customEmailRoles[$email]) ? $this->customEmailRoles[$email] : false;
+        return isset($this->customEmailRoles[$email]) ?? false;
+    }
+
+    public function getCustomRoles(string $email): array
+    {
+        return $this->customEmailRoles[$email] ?? [];
     }
 }

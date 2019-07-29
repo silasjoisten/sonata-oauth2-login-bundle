@@ -105,4 +105,4 @@ Optional: You can pass an *array* inside to to set custom *class* and *value*
 
 ## Look and Feel
 
-![Look and Feel](screenshot.png)
+![Look and Feel](docs/screenshot.png)

@@ -8,71 +8,92 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 class EmailTest extends TestCase
 {
     /**
-     * @test
-     *
      * @dataProvider isEmailValidProvider
      */
-    public function isEmailValid($expected, $email)
+    public function testIsEmailValid($expected, $email): void
     {
-        $validEmailDomains = array(
+        $validEmailDomains = [
             '@hotmail.de',
             '@gmail.com',
             '@example.com',
-        );
+        ];
 
         $checker = new Email($validEmailDomains);
 
-        $this->assertEquals($expected, $checker->isEmailValid($email));
+        $this->assertSame($expected, $checker->isEmailValid($email));
     }
 
-    /**
-     * @return array
-     */
-    public function isEmailValidProvider()
+    public function isEmailValidProvider(): array
     {
-        return array(
-            array(true, 'test@hotmail.de'),
-            array(true, 'test@gmail.com'),
-            array(true, 'test@example.com'),
-            array(false, 'test@hotmail.com'),
-            array(false, 'test@foobar.de'),
-            array(false, 'test@gmail.de'),
-            array(false, 'test@example.de'),
-            array(false, 'test@test.de'),
-        );
+        return [
+           [true, 'test@hotmail.de'],
+            [true, 'test@gmail.com'],
+            [true, 'test@example.com'],
+            [false, 'test@hotmail.com'],
+            [false, 'test@foobar.de'],
+            [false, 'test@gmail.de'],
+            [false, 'test@example.de'],
+            [false, 'test@test.de'],
+        ];
     }
 
     /**
-     * @test
-     *
      * @dataProvider hasCustomRolesProvider
      */
-    public function hasCustomRoles($expected, $email)
+    public function testHasCustomRoles($expected, $email): void
     {
-        $customEmails = array(
+        $customEmails = [
             'bar.foo@goo.de' => 'ROLE_SUPER_ADMIN',
             'test@example.com' => 'ROLE_SONATA_ADMIN',
-        );
+        ];
 
-        $checker = new Email(array(), $customEmails);
+        $checker = new Email([], $customEmails);
 
-        $this->assertEquals($expected, $checker->hasCustomRoles($email));
+        $this->assertSame($expected, $checker->hasCustomRoles($email));
+    }
+
+    public function hasCustomRolesProvider(): array
+    {
+        return [
+            [true, 'bar.foo@goo.de'],
+            [false, 'test@gmail.com'],
+            [true, 'test@example.com'],
+            [false, 'test@hotmail.com'],
+            [false, 'test@foobar.de'],
+            [false, 'test@gmail.de'],
+            [false, 'test@example.de'],
+            [false, 'test@test.de'],
+        ];
     }
 
     /**
-     * @return array
+     * @dataProvider getCustomRolesProvider
      */
-    public function hasCustomRolesProvider()
+    public function testGetCustomRoles($expected, $email): void
     {
-        return array(
-            array('ROLE_SUPER_ADMIN', 'bar.foo@goo.de'),
-            array(false, 'test@gmail.com'),
-            array('ROLE_SONATA_ADMIN', 'test@example.com'),
-            array(false, 'test@hotmail.com'),
-            array(false, 'test@foobar.de'),
-            array(false, 'test@gmail.de'),
-            array(false, 'test@example.de'),
-            array(false, 'test@test.de'),
-        );
+        $customEmails = [
+            'bar.foo@goo.de' => ['ROLE_SUPER_ADMIN'],
+            'test@example.com' => ['ROLE_SONATA_ADMIN'],
+            'some@email.com' => ['ROLE_USER_MANAGER', 'ROLE_SONATA_ADMIN'],
+        ];
+
+        $checker = new Email([], $customEmails);
+
+        $this->assertSame($expected, $checker->getCustomRoles($email));
+    }
+
+    public function getCustomRolesProvider(): array
+    {
+        return [
+            [['ROLE_SUPER_ADMIN'], 'bar.foo@goo.de'],
+            [[], 'test@gmail.com'],
+            [['ROLE_SONATA_ADMIN'], 'test@example.com'],
+            [[], 'test@hotmail.com'],
+            [[], 'test@foobar.de'],
+            [[], 'test@gmail.de'],
+            [[], 'test@example.de'],
+            [[], 'test@test.de'],
+            [['ROLE_USER_MANAGER', 'ROLE_SONATA_ADMIN'], 'some@email.com'],
+        ];
     }
 }

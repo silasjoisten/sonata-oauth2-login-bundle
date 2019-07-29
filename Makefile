@@ -1,7 +1,7 @@
 # vim: set tabstop=8 softtabstop=8 noexpandtab:
 
 install:
-	@composer install --no-interaction
+	@composer install --no-interaction --classmap-authoritative --optimize-autoloader
 
 cs:
 	@php vendor/bin/php-cs-fixer fix

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="sonata_oauth2_login.checker.email" class="SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email">
+        <service id="sonata_oauth2_login.checker.email" class="SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email" public="false">
             <argument>%sonata_oauth2_login.valid_email_domains%</argument>
             <argument>%sonata_oauth2_login.custom_emails%</argument>
         </service>
@@ -11,12 +11,12 @@
             <argument type="service" id="sonata_oauth2_login.google.authorization"/>
             <argument>%sonata_oauth2_login.default_user_roles%</argument>
         </service>
-        <service id="sonata_oauth2_login.google.client" class="Google_Client">
+        <service id="sonata_oauth2_login.google.client" class="Google_Client" public="false">
         </service>
         <service id="sonata_oauth2_login.twig.render_button_extension" class="SilasJoisten\Sonata\Oauth2LoginBundle\Twig\RenderButtonExtension" public="false">
             <tag name="twig.extension"/>
         </service>
-        <service id="sonata_oauth2_login.google.authorization" class="SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization">
+        <service id="sonata_oauth2_login.google.authorization" class="SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization" public="false">
             <argument type="service" id="sonata_oauth2_login.google.client"/>
         </service>
     </services>

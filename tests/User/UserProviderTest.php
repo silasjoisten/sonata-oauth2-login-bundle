@@ -10,19 +10,19 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Test\Fixtures\User;
 use SilasJoisten\Sonata\Oauth2LoginBundle\User\UserProvider;
 use Sonata\UserBundle\Entity\UserManager;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserProviderTest extends TestCase
 {
     protected $userManager;
-    protected $email;
     protected $authorization;
     protected $response;
     protected $token;
     protected $client;
     protected $user;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->userManager = $this->createMock(UserManager::class);
         $this->authorization = $this->createMock(Authorization::class);
@@ -32,10 +32,7 @@ class UserProviderTest extends TestCase
         $this->user = new User();
     }
 
-    /**
-     * @test
-     */
-    public function loadUserByOAuthUserResponseValidEmail()
+    public function testLoadUserByOAuthUserResponseValidEmail(): void
     {
         $this->response
             ->expects($this->once())
@@ -90,16 +87,13 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']);
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
     }
 
-    /**
-     * @test
-     */
-    public function loadUserByOAuthUserResponseValidEmailAndValidCustomEmails()
+    public function testLoadUserByOAuthUserResponseValidEmailAndValidCustomEmails(): void
     {
         $this->response
             ->expects($this->once())
@@ -144,16 +138,14 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']
+        );
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
     }
 
-    /**
-     * @test
-     */
-    public function loadUserByOAuthUserResponseCreateUserByEmail()
+    public function testLoadUserByOAuthUserResponseCreateUserByEmail(): void
     {
         $this->response
             ->expects($this->once())
@@ -208,7 +200,7 @@ class UserProviderTest extends TestCase
             $this->userManager,
             $email,
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']);
 
         $user = $userProvider->loadUserByOAuthUserResponse($this->response);
         $this->assertInstanceOf(UserInterface::class, $user);
@@ -216,19 +208,22 @@ class UserProviderTest extends TestCase
         $this->assertEquals('fooo@email.com', $user->getUsername());
         $this->assertEquals('Test', $user->getFirstname());
         $this->assertEquals('Test-Lastname', $user->getLastname());
-        $this->assertEquals(array('ROLE_SONATA_ADMIN', 'ROLE_USER'), $user->getRoles());
+        $this->assertEquals(['ROLE_SONATA_ADMIN', 'ROLE_USER'], $user->getRoles());
     }
 
-    /**
-     * @test
-     * @expectedException \Symfony\Component\Security\Core\Exception\AuthenticationException
-     */
-    public function loadUserByOAuthUserResponseException()
+    public function testLoadUserByOAuthUserResponseException(): void
     {
+        $this->expectException(AuthenticationException::class);
+
         $this->response
             ->expects($this->once())
             ->method('getOAuthToken')
             ->willReturn(new OAuthToken('thisIsaTestSecret'));
+
+        $this->response
+            ->expects($this->exactly(2))
+            ->method('getEmail')
+            ->willReturn('fooo@gmail.com');
 
         $this->client
             ->expects($this->once())
@@ -244,7 +239,8 @@ class UserProviderTest extends TestCase
             $this->userManager,
             new Email(['test@email.com']),
             $this->authorization,
-            array('ROLE_SONATA_ADMIN'));
+            ['ROLE_SONATA_ADMIN']
+        );
 
         $userProvider->loadUserByOAuthUserResponse($this->response);
     }

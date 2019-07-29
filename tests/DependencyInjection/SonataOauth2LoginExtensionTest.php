@@ -8,36 +8,28 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\DependencyInjection\SonataOauth2LoginE
 /**
  * @group di
  */
-class AppExtensionTest extends AbstractExtensionTestCase
+class SonataOauth2LoginExtensionTest extends AbstractExtensionTestCase
 {
     /**
-     * @test
-     *
      * @dataProvider availableSecurityProvider
      * @dataProvider availableServicesProvider
      * @dataProvider availableTwigExtensionsProvider
      */
-    public function availableServices($service)
+    public function testAvailableServices($service): void
     {
         $this->load();
 
         $this->assertContainerBuilderHasService($service);
     }
 
-    /**
-     * @return array
-     */
-    public function availableSecurityProvider()
+    public function availableSecurityProvider(): array
     {
         return [
             ['sonata_oauth2_login.google.authorization'],
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function availableServicesProvider()
+    public function availableServicesProvider(): array
     {
         return [
             ['sonata_oauth2_login.checker.email'],
@@ -46,20 +38,17 @@ class AppExtensionTest extends AbstractExtensionTestCase
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function availableTwigExtensionsProvider()
+    public function availableTwigExtensionsProvider(): array
     {
         return [
             ['sonata_oauth2_login.twig.render_button_extension'],
         ];
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
-        return array(
+        return [
             new SonataOauth2LoginExtension(),
-        );
+        ];
     }
 }
