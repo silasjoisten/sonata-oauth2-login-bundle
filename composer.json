@@ -12,10 +12,10 @@
   "require": {
     "php": "^7.2",
     "google/apiclient": "^2.1",
-    "hwi/oauth-bundle": "^0.6.1",
-    "php-http/guzzle6-adapter": "^1.1",
-    "php-http/httplug-bundle": "^1.10",
-    "sonata-project/user-bundle": "^4.4",
+    "hwi/oauth-bundle": "^1.1",
+    "php-http/guzzle6-adapter": "^2.0",
+    "php-http/httplug": "^2.2",
+    "sonata-project/user-bundle": "^4.7",
     "twig/twig": "^2.0"
   },
   "require-dev": {
