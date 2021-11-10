@@ -6,51 +6,26 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
-use Sonata\UserBundle\Entity\UserManager;
 use Sonata\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInterface
+final class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInterface
 {
-    /**
-     * @var UserManager
-     */
-    private $userManager;
-
-    /**
-     * @var Authorization
-     */
-    private $authorization;
-
-    /**
-     * @var Email
-     */
-    private $emailChecker;
-
-    /**
-     * @var array
-     */
-    private $defaultUserRoles;
-
     public function __construct(
-        UserManagerInterface $userManager,
-        Email $emailChecker,
-        Authorization $authorization,
-        array $defaultUserRoles
+        private UserManagerInterface $userManager,
+        private Email $emailChecker,
+        private Authorization $authorization,
+        private array $defaultUserRoles
     ) {
-        $this->userManager = $userManager;
-        $this->emailChecker = $emailChecker;
-        $this->authorization = $authorization;
-        $this->defaultUserRoles = $defaultUserRoles;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function loadUserByUsername($username)
+    public function loadUserByUsername($username): UserInterface
     {
         return $this->userManager->findUserByUsernameOrEmail($username);
     }
@@ -58,7 +33,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     /**
      * {@inheritdoc}
      */
-    public function loadUserByOAuthUserResponse(UserResponseInterface $response)
+    public function loadUserByOAuthUserResponse(UserResponseInterface $response): UserInterface
     {
         $token = $response->getOAuthToken()->getRawToken();
 
@@ -98,7 +73,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     /**
      * {@inheritdoc}
      */
-    public function refreshUser(UserInterface $user)
+    public function refreshUser(UserInterface $user): UserInterface
     {
         if (!$this->supportsClass(get_class($user))) {
             throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
@@ -110,7 +85,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     /**
      * {@inheritdoc}
      */
-    public function supportsClass($class)
+    public function supportsClass($class): bool
     {
         $userClass = $this->userManager->getClass();
 

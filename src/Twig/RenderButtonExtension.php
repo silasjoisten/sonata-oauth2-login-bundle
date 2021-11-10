@@ -6,7 +6,7 @@ use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class RenderButtonExtension extends AbstractExtension
+final class RenderButtonExtension extends AbstractExtension
 {
     public function getFunctions(): array
     {
