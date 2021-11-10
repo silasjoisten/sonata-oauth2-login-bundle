@@ -2,10 +2,10 @@
 
 namespace SilasJoisten\Sonata\Oauth2LoginBundle\User;
 
-use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
-use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthAwareUserProviderInterface;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use Sonata\UserBundle\Entity\UserManager;
 use Sonata\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -101,11 +101,7 @@ class UserProvider implements OAuthAwareUserProviderInterface, UserProviderInter
     public function refreshUser(UserInterface $user)
     {
         if (!$this->supportsClass(get_class($user))) {
-            throw new UnsupportedUserException(sprintf(
-                'Expected an instance of %s, but got "%s".',
-                $this->userManager->getClass(),
-                get_class($user)
-            ));
+            throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
         }
 
         return $this->loadUserByUsername($user->getUsername());
