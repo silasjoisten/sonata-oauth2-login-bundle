@@ -7,7 +7,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class SonataOauth2LoginExtension extends Extension
+final class SonataOauth2LoginExtension extends Extension
 {
     /**
      * {@inheritdoc}

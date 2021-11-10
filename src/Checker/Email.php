@@ -4,20 +4,10 @@ namespace SilasJoisten\Sonata\Oauth2LoginBundle\Checker;
 
 final class Email
 {
-    /**
-     * @var array
-     */
-    private $validDomains;
-
-    /**
-     * @var array
-     */
-    private $customEmailRoles;
-
-    public function __construct(array $validDomains, array $customEmailRoles = [])
-    {
-        $this->validDomains = $validDomains;
-        $this->customEmailRoles = $customEmailRoles;
+    public function __construct(
+        private array $validDomains,
+        private array $customEmailRoles = []
+    ) {
     }
 
     public function isEmailValid(string $email): bool
@@ -31,9 +21,6 @@ final class Email
         return false;
     }
 
-    /**
-     * @return string|null
-     */
     public function hasCustomRoles(string $email): bool
     {
         return isset($this->customEmailRoles[$email]) ?? false;
