@@ -2,8 +2,6 @@
 
 namespace SilasJoisten\Sonata\Oauth2LoginBundle\Google;
 
-
-
 final class Authorization
 {
     public function __construct(
