@@ -25,7 +25,7 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
     /**
      * {@inheritdoc}
      */
-    public function loadUserByUsername($username): UserInterface
+    public function loadUserByUsername($username): ?UserInterface
     {
         return $this->userManager->findUserByUsernameOrEmail($username);
     }
