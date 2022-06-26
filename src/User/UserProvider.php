@@ -25,7 +25,7 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
     /**
      * {@inheritdoc}
      */
-    public function loadUserByUsername($username): UserInterface
+    public function loadUserByUsername($username): ?UserInterface
     {
         return $this->userManager->findUserByUsernameOrEmail($username);
     }
@@ -90,5 +90,13 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
         $userClass = $this->userManager->getClass();
 
         return $userClass === $class || is_subclass_of($class, $userClass);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function loadUserByIdentifier(string $identifier): UserInterface
+    {
+        // TODO: Implement loadUserByIdentifier() method.
     }
 }

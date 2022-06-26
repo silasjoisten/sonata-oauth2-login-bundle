@@ -6,7 +6,7 @@
             <argument>%sonata_oauth2_login.custom_emails%</argument>
         </service>
         <service id="sonata_oauth2_login.user.provider" class="SilasJoisten\Sonata\Oauth2LoginBundle\User\UserProvider">
-            <argument type="service" id="sonata.user.orm.user_manager"/>
+            <argument type="service" id="sonata.user.manager.user"/>
             <argument type="service" id="sonata_oauth2_login.checker.email"/>
             <argument type="service" id="sonata_oauth2_login.google.authorization"/>
             <argument>%sonata_oauth2_login.default_user_roles%</argument>
