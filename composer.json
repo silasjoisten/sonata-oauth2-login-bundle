@@ -16,7 +16,7 @@
     "php-http/guzzle6-adapter": "^2.0",
     "php-http/httplug": "^2.2",
     "sonata-project/user-bundle": "^4.7|^5.1",
-    "twig/twig": "^2.0"
+    "twig/twig": "^3.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.15",
