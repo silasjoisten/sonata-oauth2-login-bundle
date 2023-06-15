@@ -40,6 +40,20 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
     /**
      * {@inheritdoc}
      */
+    public function loadUserByIdentifier(string $identifier): UserInterface
+    {
+        if (($user = $this->userManager->findUserByUsernameOrEmail($identifier))) {
+            return $user;
+        }
+
+        throw new UserNotFoundException(
+            sprintf('User with username/email "%s" does not exists.', $identifier)
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response): UserInterface
     {
         $token = $response->getOAuthToken()->getRawToken();
