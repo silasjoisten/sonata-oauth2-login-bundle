@@ -32,6 +32,20 @@ class UserProviderTest extends TestCase
         $this->assertInstanceOf('Symfony\Component\Security\Core\User\UserInterface', $result);
     }
 
+    public function testLoadUserByIdentifier(): void
+    {
+        $user = Mockery::mock('Sonata\UserBundle\Model\UserInterface');
+        $userManager = Mockery::mock('Sonata\UserBundle\Model\UserManagerInterface');
+        $emailChecker = new EMail([]);
+        $authorization = new Authorization($this->createMock(\Google_Client::class));
+
+        $userManager->shouldReceive('findUserByUsernameOrEmail')->once()->andReturn($user);
+
+        $provider = new UserProvider($userManager, $emailChecker, $authorization, []);
+        $this->assertNotNull($result = $provider->loadUserByIdentifier('User'));
+        $this->assertInstanceOf('Symfony\Component\Security\Core\User\UserInterface', $result);
+    }
+
     public function testLoadUserByUsernameThrowsExceptionIfNotFound(): void
     {
         $userManager = Mockery::mock('Sonata\UserBundle\Model\UserManagerInterface');
@@ -43,6 +57,19 @@ class UserProviderTest extends TestCase
         $this->expectException(UserNotFoundException::class);
         $provider = new UserProvider($userManager, $emailChecker, $authorization, []);
         $provider->loadUserByUsername('User');
+    }
+
+    public function testLoadUserByIdentifierThrowsExceptionIfNotFound(): void
+    {
+        $userManager = Mockery::mock('Sonata\UserBundle\Model\UserManagerInterface');
+        $emailChecker = new EMail([]);
+        $authorization = new Authorization($this->createMock(\Google_Client::class));
+
+        $userManager->shouldReceive('findUserByUsernameOrEmail')->once()->andReturn(null);
+
+        $this->expectException(UserNotFoundException::class);
+        $provider = new UserProvider($userManager, $emailChecker, $authorization, []);
+        $provider->loadUserByIdentifier('User');
     }
 
     public function testLoadUserByOAuthUserResponse(): void

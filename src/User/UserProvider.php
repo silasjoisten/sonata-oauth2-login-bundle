@@ -42,13 +42,7 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
      */
     public function loadUserByIdentifier(string $identifier): UserInterface
     {
-        if (($user = $this->userManager->findUserByUsernameOrEmail($identifier))) {
-            return $user;
-        }
-
-        throw new UserNotFoundException(
-            sprintf('User with username/email "%s" does not exists.', $identifier)
-        );
+        return $this->loadUserByUsername($identifier);
     }
 
     /**
@@ -100,7 +94,7 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
             throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
         }
 
-        return $this->loadUserByUsername($user->getUsername());
+        return $this->loadUserByIdentifier($user->getUsername());
     }
 
     /**
