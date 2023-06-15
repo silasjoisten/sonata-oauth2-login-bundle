@@ -9,6 +9,7 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use Sonata\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
@@ -25,9 +26,13 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
     /**
      * {@inheritdoc}
      */
-    public function loadUserByUsername($username): ?UserInterface
+    public function loadUserByUsername($username): UserInterface
     {
-        return $this->userManager->findUserByUsernameOrEmail($username);
+        if (($user = $this->userManager->findUserByUsernameOrEmail($username))) {
+            return $user;
+        }
+
+        throw new UserNotFoundException();
     }
 
     /**
@@ -46,9 +51,9 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
             throw new AuthenticationException('Invalid Google Account');
         }
 
-        $user = $this->loadUserByUsername($response->getEmail());
-
-        if (!$user) {
+        try {
+            $user = $this->loadUserByUsername($response->getEmail());
+        } catch (UserNotFoundException) {
             $user = $this->userManager->create();
             $user->setUsername($response->getEmail());
             $user->setEmail($response->getEmail());
@@ -73,7 +78,7 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
     /**
      * {@inheritdoc}
      */
-    public function refreshUser(UserInterface $user): ?UserInterface
+    public function refreshUser(UserInterface $user): UserInterface
     {
         if (!$this->supportsClass(get_class($user))) {
             throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
