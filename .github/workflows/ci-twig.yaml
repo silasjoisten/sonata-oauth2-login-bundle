@@ -51,7 +51,7 @@ jobs:
 
             -
                 name: "Run vincentlanglet/twig-cs-fixer"
-                run: "vendor/bin/twig-cs-fixer lint --fix --no-cache templates/"
+                run: "vendor/bin/twig-cs-fixer lint --fix --no-cache src/Resources/views/"
 
             -
                 name: "Commit files fixed with vincentlanglet/twig-cs-fixer"
