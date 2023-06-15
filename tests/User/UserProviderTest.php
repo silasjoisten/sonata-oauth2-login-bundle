@@ -8,8 +8,8 @@ use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\Authentication\Token\OAuthToken;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use SilasJoisten\Sonata\Oauth2LoginBundle\Checker\Email;
+use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use SilasJoisten\Sonata\Oauth2LoginBundle\User\UserProvider;
 use Sonata\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -80,7 +80,7 @@ class UserProviderTest extends TestCase
         $userManager = Mockery::mock('Sonata\UserBundle\Model\UserManagerInterface');
         $userManager->shouldReceive('save')->once();
 
-        $emailChecker = new EMail(['example.org'],['test@example.org' => ['MY_ROLE']]);
+        $emailChecker = new EMail(['example.org'], ['test@example.org' => ['MY_ROLE']]);
         $google = $this->createMock(\Google_Client::class);
         $authorization = new Authorization($google);
 
@@ -114,7 +114,7 @@ class UserProviderTest extends TestCase
         $userManager->shouldReceive('save')->once();
         $userManager->shouldReceive('create')->andReturn($user);
 
-        $emailChecker = new EMail(['example.org'],['test@example.org' => ['MY_ROLE']]);
+        $emailChecker = new EMail(['example.org'], ['test@example.org' => ['MY_ROLE']]);
         $google = $this->createMock(\Google_Client::class);
         $authorization = new Authorization($google);
 
