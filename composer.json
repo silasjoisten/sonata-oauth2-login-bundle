@@ -21,11 +21,15 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.15",
     "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+    "mockery/mockery": "^1.6",
     "phpunit/phpunit": "^9.5",
     "symfony/phpunit-bridge": "^4.3"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   },
   "autoload": {
     "psr-4": {

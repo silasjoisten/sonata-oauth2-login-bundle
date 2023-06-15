@@ -9,6 +9,7 @@ use SilasJoisten\Sonata\Oauth2LoginBundle\Google\Authorization;
 use Sonata\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
@@ -27,7 +28,21 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
      */
     public function loadUserByUsername($username): UserInterface
     {
-        return $this->userManager->findUserByUsernameOrEmail($username);
+        if (($user = $this->userManager->findUserByUsernameOrEmail($username))) {
+            return $user;
+        }
+
+        throw new UserNotFoundException(
+            sprintf('User with username/email "%s" does not exists.', $username)
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function loadUserByIdentifier(string $identifier): UserInterface
+    {
+        return $this->loadUserByUsername($identifier);
     }
 
     /**
@@ -46,9 +61,9 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
             throw new AuthenticationException('Invalid Google Account');
         }
 
-        $user = $this->loadUserByUsername($response->getEmail());
-
-        if (!$user) {
+        try {
+            $user = $this->loadUserByUsername($response->getEmail());
+        } catch (UserNotFoundException) {
             $user = $this->userManager->create();
             $user->setUsername($response->getEmail());
             $user->setEmail($response->getEmail());
@@ -79,7 +94,7 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
             throw new UnsupportedUserException(sprintf('Expected an instance of %s, but got "%s".', $this->userManager->getClass(), get_class($user)));
         }
 
-        return $this->loadUserByUsername($user->getUsername());
+        return $this->loadUserByIdentifier($user->getUsername());
     }
 
     /**
