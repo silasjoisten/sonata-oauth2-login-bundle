@@ -32,7 +32,9 @@ final class UserProvider implements OAuthAwareUserProviderInterface, UserProvide
             return $user;
         }
 
-        throw new UserNotFoundException();
+        throw new UserNotFoundException(
+            sprintf('User with username/email "%s" does not exists.', $username)
+        );
     }
 
     /**
