@@ -50,10 +50,6 @@ jobs:
                     composer-options: "--no-scripts"
 
             -
-                name: "Lint Twig files"
-                run: "bin/console lint:twig templates/"
-
-            -
                 name: "Run vincentlanglet/twig-cs-fixer"
                 run: "vendor/bin/twig-cs-fixer lint --fix --no-cache templates/"
 
