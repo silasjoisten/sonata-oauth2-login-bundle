@@ -34,7 +34,7 @@ jobs:
             # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
             -   if: github.actor != 'dependabot[bot]'
                 name: "Checkout"
-                uses: "actions/checkout@v2.4.0"
+                uses: "actions/checkout@v3"
                 with:
                     ref: "${{ github.head_ref }}"
                     # Must be used to be able to commit changed files
@@ -43,13 +43,13 @@ jobs:
             # in forks, the token is not available - so we cannot use it
             -   if: github.actor == 'dependabot[bot]'
                 name: "Checkout"
-                uses: "actions/checkout@v2.4.0"
+                uses: "actions/checkout@v3"
                 with:
                     ref: "${{ github.head_ref }}"
 
             -
                 name: "Install PHP with extensions"
-                uses: "shivammathur/setup-php@2.15.0"
+                uses: "shivammathur/setup-php@2.25.4"
                 with:
                     coverage: "none"
                     extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
@@ -62,7 +62,7 @@ jobs:
 
             -
                 name: "Install dependencies with composer"
-                uses: "ramsey/composer-install@1.3.0"
+                uses: "ramsey/composer-install@2.2.0"
                 with:
                     composer-options: "--no-scripts"
             -
@@ -71,7 +71,7 @@ jobs:
 
             -
                 name: "Cache cache directory for friendsofphp/php-cs-fixer"
-                uses: "actions/cache@v2.1.6"
+                uses: "actions/cache@v3.3.1"
                 with:
                     path: ".build/php-cs-fixer"
                     key: "php-${{ matrix.php-version }}-php-cs-fixer-${{ github.sha }}"
@@ -83,7 +83,7 @@ jobs:
 
             -
                 name: "Commit files fixed with friendsofphp/php-cs-fixer"
-                uses: "stefanzweifel/git-auto-commit-action@v4.12.0"
+                uses: "stefanzweifel/git-auto-commit-action@v4.16.0"
                 with:
                     branch: "${{ github.head_ref }}"
                     commit_author: "${{ env.BOT_NAME }} <${{ env.BOT_EMAIL }}>"
@@ -109,7 +109,7 @@ jobs:
             # see https://github.com/rectorphp/rector/commit/d395e1c28b8e6a56711dcc2e10490a82965850e4
             -   if: github.actor != 'dependabot[bot]'
                 name: "Checkout"
-                uses: "actions/checkout@v2.4.0"
+                uses: "actions/checkout@v3"
                 with:
                     ref: "${{ github.head_ref }}"
                     # Must be used to be able to commit changed files
@@ -118,13 +118,13 @@ jobs:
             # in forks, the token is not available - so we cannot use it
             -   if: github.actor == 'dependabot[bot]'
                 name: "Checkout"
-                uses: "actions/checkout@v2.4.0"
+                uses: "actions/checkout@v3"
                 with:
                     ref: "${{ github.head_ref }}"
 
             -
                 name: "Install PHP with extensions"
-                uses: "shivammathur/setup-php@2.15.0"
+                uses: "shivammathur/setup-php@2.25.4"
                 with:
                     coverage: "pcov"
                     extensions: "${{ env.REQUIRED_PHP_EXTENSIONS }}"
@@ -133,7 +133,7 @@ jobs:
 
             -
                 name: "Install dependencies with composer"
-                uses: "ramsey/composer-install@1.3.0"
+                uses: "ramsey/composer-install@2.2.0"
                 with:
                     composer-options: "--no-scripts"
 
